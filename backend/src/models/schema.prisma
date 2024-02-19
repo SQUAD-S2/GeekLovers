@@ -9,3 +9,144 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id                        Int                @id         @default(autoincrement())
+  cpf                       String             @unique     @db.Char(11)
+  nome                      String    
+  email                     String             @unique
+  dataNasc                  String
+
+  foto                      String?   
+  status                    Decimal?
+  cartao                    String?
+  endereco                  String?
+  telefone                  String?
+
+  cargo                     String
+  hash                      String
+  salt                      String
+
+  favoritos                 Favorites?
+  carrinho                  Cart?
+
+  produtos                  Product[]
+  compras                   Purchase[]
+  comentarios               Comment[]
+  respostas                 Answer[]
+
+  @@map("usuario")
+}
+
+model Product {
+  id                         Int                     @id         @default(autoincrement())
+  nome                       String
+  preco                      Decimal    
+  fotos                      String[]
+  filtros                    String[]
+  estado                     String
+
+  descricao                  String?
+  quantidade                 Int
+
+  usuario                    User                    @relation(fields: [usuarioId], references: [id])
+  usuarioId                  Int
+
+  favoritos                  Favorites[]
+  carrinhos                  ProductsOnCart[]
+  compras                    ProductsOnPurchase[]
+  comentarios                Comment[]
+
+  @@map("produto")
+}
+
+model Comment {
+  text           String
+  data           DateTime
+
+  usuario        User       @relation(fields: [usuarioId], references: [id])
+  usuarioId      Int        @map("id_usuario")
+
+  produto        Product    @relation(fields: [produtoId], references: [id])
+  produtoId      Int        @map("id_produto")
+
+  resposta       Answer?
+
+  @@id([usuarioId, produtoId])
+  @@map("comentario")
+}
+
+model Answer {
+  text              String
+  data              DateTime
+
+  usuario           User          @relation(fields: [usuarioId], references: [id])
+  usuarioId         Int           @map("id_usuario")
+
+  comentario        Comment       @relation(fields: [compradorId, produtoId], references: [usuarioId, produtoId])
+  compradorId       Int           @map("id_autor")
+  produtoId         Int           @map("id_produto")
+
+  @@map("responsta")
+  @@id([compradorId, produtoId])
+}
+
+model Cart {
+  total                      Decimal               @map("valor_total") @db.Money
+  quantidade                 Int                   @map("qtd_produtos")
+
+  usuario                    User                  @relation(fields: [usuarioId], references: [id])
+  usuarioId                  Int                   @id @map("id_usuario")
+
+  produtos                   ProductsOnCart[]
+
+  @@map("carrinho")
+}
+
+model Favorites {
+  usuario                    User                  @relation(fields: [usuarioId], references: [id])
+  usuarioId                  Int                   @id @map("id_usuario")
+
+  produtos                   Product[]
+
+  @@map("favoritos")
+}
+
+model Purchase {
+  data                       DateTime                  @default(now())
+  usuario                    User                      @relation(fields: [usuarioId], references: [id])
+  usuarioId                  Int                       @map("id_usuario")
+
+  valor                      Decimal                   @map("valor_total") @db.Money
+  produtos                   ProductsOnPurchase[] 
+
+  @@id([data, usuarioId])
+  @@map("compra")
+}
+
+model ProductsOnCart {
+  usuario                    Cart                   @relation(fields: [usuarioId], references: [usuarioId])
+  usuarioId                  Int                    @map("id_usuario")
+
+  produto                    Product                @relation(fields: [produtoId], references: [id])
+  produtoId                  Int                    @map("id_produto")
+
+  quantidade                 Int
+
+  @@id([usuarioId, produtoId])
+  @@map("produtos_no_carrinho")
+}
+
+model ProductsOnPurchase {
+  produto                    Product               @relation(fields: [produtoId], references: [id])
+  produtoId                  Int                   @map("id_produto")
+
+  compra                     Purchase              @relation(fields: [compraData, compraId], references: [data, usuarioId])
+  compraData                 DateTime              @map("data_compra")
+  compraId                   Int                   @map("id_compra")
+
+  quantidade                 Int
+
+  @@id([produtoId, compraData, compraId])
+  @@map("produtos_na_compra")
+}
