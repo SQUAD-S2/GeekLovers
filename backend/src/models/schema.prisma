@@ -10,143 +10,156 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+enum ProductState {
+  NEW
+  SEMI_NEW
+  SECOND_HAND
+}
+
+enum Role {
+  USER
+  MODERATOR
+}
+
 model User {
-  id                        Int                @id         @default(autoincrement())
-  cpf                       String             @unique     @db.Char(11)
-  nome                      String    
-  email                     String             @unique
-  dataNasc                  String
+  id                      Int    @id @default(autoincrement())
+  cpf                     String @unique @db.Char(11)
+  name                    String
+  email                   String @unique
+  birthDate               String
 
-  foto                      String?   
-  status                    Decimal?
-  cartao                    String?
-  endereco                  String?
-  telefone                  String?
+  profilePicture          String?
+  status                  Decimal?
+  card                    String?
+  address                 String?
+  phone                   String?
 
-  cargo                     String
-  hash                      String
-  salt                      String
+  role                    Role   @default(USER)
+  hash                    String
+  salt                    String
 
-  favoritos                 Favorites?
-  carrinho                  Cart?
+  favorites               Favorites?
+  cart                    Cart?
 
-  produtos                  Product[]
-  compras                   Purchase[]
-  comentarios               Comment[]
-  respostas                 Answer[]
+  products                Product[]
+  purchases               Purchase[]
+  comments                Comment[]
+  answers                 Answer[]
 
-  @@map("usuario")
+  @@map("user")
 }
 
 model Product {
-  id                         Int                     @id         @default(autoincrement())
-  nome                       String
-  preco                      Decimal    
-  fotos                      String[]
-  filtros                    String[]
-  estado                     String
+  id                    Int          @id @default(autoincrement())
+  name                  String
+  price                 Decimal
+  photos                String[]
+  features              String[]
+  state                 ProductState
 
-  descricao                  String?
-  quantidade                 Int
+  description           String?
+  quntity               Int
 
-  usuario                    User                    @relation(fields: [usuarioId], references: [id])
-  usuarioId                  Int
+  user                  User @relation(fields: [userId], references: [id])
+  userId                Int
 
-  favoritos                  Favorites[]
-  carrinhos                  ProductsOnCart[]
-  compras                    ProductsOnPurchase[]
-  comentarios                Comment[]
+  favorites             Favorites[]
+  carts                 ProductsOnCart[]
+  purchases             ProductsOnPurchase[]
+  comments              Comment[]
 
-  @@map("produto")
+  @@map("product")
 }
 
 model Comment {
-  text           String
-  data           DateTime
+  text                  String
+  date                  DateTime
 
-  usuario        User       @relation(fields: [usuarioId], references: [id])
-  usuarioId      Int        @map("id_usuario")
+  user                  User @relation(fields: [userId], references: [id])
+  userId                Int  @map("id_user")
 
-  produto        Product    @relation(fields: [produtoId], references: [id])
-  produtoId      Int        @map("id_produto")
+  product               Product @relation(fields: [productId], references: [id])
+  productId             Int     @map("id_product")
 
-  resposta       Answer?
+  answer                Answer?
 
-  @@id([usuarioId, produtoId])
-  @@map("comentario")
+  @@id([userId, productId])
+  @@map("comment")
 }
 
 model Answer {
-  text              String
-  data              DateTime
+  text                  String
+  date                  DateTime
 
-  usuario           User          @relation(fields: [usuarioId], references: [id])
-  usuarioId         Int           @map("id_usuario")
+  user                  User @relation(fields: [userId], references: [id])
+  userId                Int  @map("id_user")
 
-  comentario        Comment       @relation(fields: [compradorId, produtoId], references: [usuarioId, produtoId])
-  compradorId       Int           @map("id_autor")
-  produtoId         Int           @map("id_produto")
+  comment               Comment @relation(fields: [buyerId, productId], references: [userId, productId])
+  buyerId               Int     @map("id_autor")
+  productId             Int     @map("id_product")
 
-  @@map("responsta")
-  @@id([compradorId, produtoId])
+  @@id([buyerId, productId])
+  @@map("answer")
 }
 
 model Cart {
-  total                      Decimal               @map("valor_total") @db.Money
-  quantidade                 Int                   @map("qtd_produtos")
+  total                Decimal @map("valor_total") @db.Money
+  quantity             Int     @map("qnt_products")
 
-  usuario                    User                  @relation(fields: [usuarioId], references: [id])
-  usuarioId                  Int                   @id @map("id_usuario")
+  user                 User @relation(fields: [userId], references: [id])
+  userId               Int  @id @map("id_user")
 
-  produtos                   ProductsOnCart[]
+  products             ProductsOnCart[]
 
-  @@map("carrinho")
+  @@map("cart")
 }
 
 model Favorites {
-  usuario                    User                  @relation(fields: [usuarioId], references: [id])
-  usuarioId                  Int                   @id @map("id_usuario")
+  user                 User @relation(fields: [userId], references: [id])
+  userId               Int  @id @map("id_user")
 
-  produtos                   Product[]
+  products             Product[]
 
-  @@map("favoritos")
+  @@map("favorites")
 }
 
 model Purchase {
-  data                       DateTime                  @default(now())
-  usuario                    User                      @relation(fields: [usuarioId], references: [id])
-  usuarioId                  Int                       @map("id_usuario")
+  date                 DateTime @default(now())
+  user                 User     @relation(fields: [userId], references: [id])
+  userId               Int      @map("id_user")
 
-  valor                      Decimal                   @map("valor_total") @db.Money
-  produtos                   ProductsOnPurchase[] 
+  value                Decimal  @map("valor_total") @db.Money
+  products             ProductsOnPurchase[]
 
-  @@id([data, usuarioId])
-  @@map("compra")
+  @@id([date, userId])
+  @@map("purchase")
 }
 
 model ProductsOnCart {
-  usuario                    Cart                   @relation(fields: [usuarioId], references: [usuarioId])
-  usuarioId                  Int                    @map("id_usuario")
+  user                  Cart @relation(fields: [userId], references: [userId])
+  userId                Int  @map("id_user")
 
-  produto                    Product                @relation(fields: [produtoId], references: [id])
-  produtoId                  Int                    @map("id_produto")
+  product               Product @relation(fields: [productId], references: [id])
+  productId             Int     @map("id_product")
 
-  quantidade                 Int
+  quantity              Int
 
-  @@id([usuarioId, produtoId])
-  @@map("produtos_no_carrinho")
+  @@id([userId, productId])
+  @@map("products_on_cart")
+  
 }
 
 model ProductsOnPurchase {
-  produto                    Product               @relation(fields: [produtoId], references: [id])
-  produtoId                  Int                   @map("id_produto")
+  product                    Product @relation(fields: [productId], references: [id])
+  productId                  Int     @map("id_product")
 
-  compra                     Purchase              @relation(fields: [compraData, compraId], references: [data, usuarioId])
-  compraData                 DateTime              @map("data_compra")
-  compraId                   Int                   @map("id_compra")
+  purchase                   Purchase @relation(fields: [purchaseData, purchaseId], references: [date, userId])
+  purchaseData               DateTime @map("date_purchase")
+  purchaseId                 Int      @map("id_purchase")
 
-  quantidade                 Int
+  quantity                   Int
 
-  @@id([produtoId, compraData, compraId])
-  @@map("produtos_na_compra")
+  @@id([productId, purchaseData, purchaseId])
+  @@map("products_on_purchase")
 }
