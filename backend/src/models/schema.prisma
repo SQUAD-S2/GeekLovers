@@ -74,7 +74,7 @@ model Product {
 
 model Comment {
   text                  String
-  date                  DateTime
+  date                  DateTime @default(now())
 
   user                  User @relation(fields: [userId], references: [id])
   userId                Int  @map("id_user")
@@ -90,7 +90,7 @@ model Comment {
 
 model Answer {
   text                  String
-  date                  DateTime
+  date                  DateTime  @default(now())
 
   user                  User @relation(fields: [userId], references: [id])
   userId                Int  @map("id_user")
