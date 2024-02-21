@@ -73,7 +73,7 @@ class CommentController {
         if (!comment) return response.status(404).json({ message: 'Comentário não encontrado' });
 
         // checar se usuário é dono do comentário ou é moderador
-        if (!(user.role === 'MODERATOR' || productId === comment.productId)) {
+        if (!(user.role === 'MODERATOR' || userId === comment.userId)) {
           return response.status(403).json({ message: 'Usuário não tem permissão' });
         }
 
