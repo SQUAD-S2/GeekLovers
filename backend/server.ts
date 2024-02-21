@@ -1,6 +1,6 @@
 import express from 'express';
 import configDotenv from './src/config/dotenv';
-// import cors from 'cors';
+import cors from 'cors';
 // import routes from './src/routes/routes';
 
 configDotenv();
@@ -10,7 +10,13 @@ const port = process.env.PORT;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-//app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+    maxAge: 5,
+  }),
+);
 //app.use(routes);
 
 app.get('/', (req, res) => {
