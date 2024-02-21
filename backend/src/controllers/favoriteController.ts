@@ -13,7 +13,7 @@ class FavoriteController {
       if (!payload) {
         return response.status(403).json({ message: 'Não autorizado' });
       }
-      const userId = payload.sub;
+      const userId = Number(payload.sub);
       let favoritesInput: Prisma.FavoritesCreateInput = {
         user: { connect: { id: userId } },
       };
@@ -34,7 +34,7 @@ class FavoriteController {
       if (!payload) {
         return response.status(403).json({ message: 'Não autorizado' });
       }
-      const userId = payload.sub;
+      const userId = Number(payload.sub);
       const productId = request.body.productId;
 
       const product = await prisma.product.findUnique({
@@ -66,7 +66,7 @@ class FavoriteController {
       if (!payload) {
         return response.status(403).json({ message: 'Não autorizado' });
       }
-      const userId = payload.sub;
+      const userId = Number(payload.sub);
       const productId = request.body.productId;
 
       const product = await prisma.product.findUnique({
@@ -98,7 +98,7 @@ class FavoriteController {
       if (!payload) {
         return response.status(403).json({ message: 'Não autorizado' });
       }
-      const userId = payload.sub;
+      const userId = Number(payload.sub);
 
       const favorites = await prisma.favorites.findUnique({
         where: { userId: userId },
