@@ -14,9 +14,9 @@ export const StyledView = styled.View`
     background: #F3F3F3;
 `
 
-export const Title = styled.Image`
-    width: 366px;
-    height: 50px;
+export const Title = styled.Text`
+    font-size: 30px;
+    color: #0303034D;
     margin: 80px 0px 80px 0px;
 `
 
@@ -51,7 +51,7 @@ font-family: Roboto;
 font-family: 'Roboto';
     font-size: 20px;
     font-weight: 500;
-;
+
 `
 export const ForgotPasswordText = styled.Text`
 align-self: flex-end;

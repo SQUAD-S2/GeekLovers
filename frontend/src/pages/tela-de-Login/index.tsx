@@ -6,7 +6,7 @@ export default function Login() {
     return (
         <StyledView>
 
-            <Title source={require("../../assets/Logo-Vector.svg")} />
+            <Title>GeekLovers</Title>
 
             <InputContainer>
                 <InputLabel>Nome</InputLabel>
