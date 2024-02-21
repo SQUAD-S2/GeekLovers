@@ -13,7 +13,7 @@ class CommentController {
       if (!payload) {
         return response.status(403).json({ message: 'Não autorizado' });
       }
-      const userId = payload.sub;
+      const userId = Number(payload.sub);
       const { productId, text } = request.body;
 
       // checar se o produto existe
@@ -46,7 +46,7 @@ class CommentController {
       if (!payload) {
         return response.status(403).json({ message: 'Não autorizado' });
       }
-      const userId = payload.sub;
+      const userId = Number(payload.sub);
       const productId = request.body.productId;
       // checar se o produto existe
       const product = await prisma.product.findUnique({
