@@ -14,15 +14,14 @@ export const StyledView = styled.View`
     background: #F3F3F3;
 `
 
-export const Title = styled.Image`
-    width: 366px;
-    height: 50px;
+export const Title = styled.Text`
+    font-size: 30px;
+    color: #0303034D;
     margin: 80px 0px 80px 0px;
 `
 
 
 export const InputContainer = styled.View`
-position: relative;
 margin-top: 15px;
 width: 100%;
 `
@@ -41,9 +40,6 @@ export const Input = styled.TextInput`
 `
 
 export const InputLabel = styled.Text`
-position: absolute;
-top: -10;
-left: 10;
 padding: 0px 5px 0px 5px;
 background: #F3F3F3;
 color: #988A3A;
@@ -51,7 +47,7 @@ font-family: Roboto;
 font-family: 'Roboto';
     font-size: 20px;
     font-weight: 500;
-;
+
 `
 export const ForgotPasswordText = styled.Text`
 align-self: flex-end;

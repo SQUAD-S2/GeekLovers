@@ -5,7 +5,7 @@ import { Title, Input, TextTerms, Button1, Button2, ButtonText1, ButtonText2, Bu
 function Registro() {
     return (
         <StyledView>
-            <Title source={require("../../assets/Logo-Vector.svg")} />
+            <Title>GeekLovers</Title>
             <InputContainer>
                 <InputLabel>Nome</InputLabel>
                 <Input placeholder="Seu nome" />

@@ -1,13 +1,12 @@
 import React from "react";
 import { Input, InputLabel, Title, ForgotPasswordText, Button1, ButtonText1, Button2, ButtonText2, StyledView, Button3, ButtonText3, InputContainer } from "./style";
-import { useForm, Controller } from 'react-hook-form';
+
 
 export default function Login() {
-    const { control, handleSubmit, setValue, formState: { errors } } = useForm();
     return (
         <StyledView>
 
-            <Title source={require("../../assets/Logo-Vector.svg")} />
+            <Title>GeekLovers</Title>
 
             <InputContainer>
                 <InputLabel>Nome</InputLabel>
@@ -16,16 +15,7 @@ export default function Login() {
 
             <InputContainer>
                 <InputLabel>Senha</InputLabel>
-                <Controller
-                    control={control}
-                    render={({ field }) => (
-                        <Input placeholder="••••••••••" onChangeText={(text) => setValue('password', text)}
-                            secureTextEntry />
-                    )}
-                    name="password"
-                    rules={{ required: 'Senha é obrigatória' }}
-                />
-
+                <Input placeholder="••••••••••" />
             </InputContainer>
 
             <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
