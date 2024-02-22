@@ -17,27 +17,31 @@ export const Container1 = styled.View`
 `
 
 export const SubTitle = styled.Text`
-    font-family: Honk;
     text-aling: center;
     font-size: 3.25rem;
-    
 `
 
 export const Container2 = styled.View`
+    position: relative;
     display: flex;
     align-items: flex-start;
 `
 
 export const InputLabel = styled.Text`
-    float: left;
+    position: absolute;
+    left: 1rem;
+    top: -0.1rem;
+    background: #ffffff;
+    padding: 0 0.2rem;
     text-aling: left;
     color: #988A3A;
 
 `
 export const Input = styled.TextInput`
     color: #03030380;
+    font-size: 1rem;
     max-width:80vw;
-    padding: 1.125rem 14.4375rem 1.125rem 1rem;
+    padding: 1rem 10.4375rem 1rem 1rem;
     margin: 0.5rem 0;
     border-radius: 0.3125rem;
     border-width: 0.13rem;
