@@ -1,13 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Carrinho from './src/pages/Tela_de_Carrinho';
 import Favoritos from './src/pages/tela-de-favoritos/index';
 
 
 export default function App() {
     return (
         <View style={styles.container}>
-            <Carrinho/>
+            <Favoritos/>
             <StatusBar style="auto" />
         </View>
     );
