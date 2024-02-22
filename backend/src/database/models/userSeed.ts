@@ -1,6 +1,6 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 import { faker } from '@faker-js/faker/locale/pt_BR';
-import crypto from 'crypto';
+import auth from '../../config/auth';
 
 const prisma = new PrismaClient();
 
@@ -33,8 +33,7 @@ export async function userSeed() {
       memorable: false,
       pattern: /[A-Za-z\@!-_%*]/,
     });
-    const salt = crypto.randomBytes(32).toString('hex');
-    const hash = crypto.pbkdf2Sync(password, salt, 10000, 64, 'sha512').toString('hex');
+    const { salt, hash } = auth.generatePassword(password);
 
     // Definir cargo do usuário e estado do produto aleatoriamente
     const randomRole = Math.floor(Math.random() * 2);
