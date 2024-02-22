@@ -95,6 +95,7 @@ model Answer {
   user                       User      @relation(fields: [userId], references: [id])
   userId                     Int       @map("id_user")
 
+
   comment                    Comment   @relation(fields: [buyerId, productId], references: [userId, productId])
   buyerId                    Int       @map("id_autor")
   productId                  Int       @map("id_product")
