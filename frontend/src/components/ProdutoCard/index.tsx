@@ -1,5 +1,6 @@
 import *as React from "react";
 import { Container, Container1, Title, SubTitle, Image } from './style';
+
 interface Produto { title: string; preço: string; imagem: string; } 
 
 function ProdutoCard ({title, preço, imagem}:Produto) {
