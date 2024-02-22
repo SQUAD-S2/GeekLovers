@@ -39,7 +39,10 @@ export default  {
         try {
 
             const { productId } = req.body;
-            const answers = await prisma.answer.findMany({ where: { productId: productId } });
+            const answers = await prisma.answer.findMany({ 
+                where: { productId: productId },
+                include: {comment: true}
+            });
 
             return res.status(201).json(answers)
         } catch (error: any) {

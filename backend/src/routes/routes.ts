@@ -1,12 +1,13 @@
 import { Router } from 'express';
 import userController from '../controllers/userController';
-// import productController from '../controllers/productController';
+import productController from '../controllers/productController';
 // import purchaseController from '../controllers/purchaseController';
 import authController from '../controllers/authController';
-// import cartController from '../controllers/cartController';
+import cartController from '../controllers/cartController';
+import productsOnCartController from '../controllers/productsOnCartController';
 import favoriteController from '../controllers/favoriteController';
 import commentController from '../controllers/commentController';
-// import answerController from '../controllers/answerController';
+import answerController from '../controllers/answerController';
 
 const router = Router();
 
@@ -20,17 +21,30 @@ router.put('/user/:id', userController.update);
 router.put('/update-password/:id', userController.updatePassword);
 router.delete('/user-delete/:id', userController.destroy);
 
-// router.post('/product', productController.create);
-// router.get('/products', productController.read);
-// router.get('/products', productController.read);
-// router.get('/user-products', productController.readUser);
-// router.put('/product', productController.update);
-// router.delete('/delete-product', productController.destroy);
+router.post('/product', productController.create);
+router.get('/products', productController.read);
+router.get('/products', productController.read);
+router.get('/user-products', productController.readUser);
+router.put('/product', productController.update);
+router.delete('/delete-product', productController.destroy);
+
+router.post('/cart', cartController.create);
+router.get('/carts', cartController.read);
+router.get('user-cart', cartController.readUser);
+router.put('/empty-cart', cartController.emptyCart);
+
+router.put('/add-one-product', productsOnCartController.addProduct);
+router.put('/remove-one-product', productsOnCartController.removeProduct);
+router.put('/remove-product', productsOnCartController.destroy);
 
 router.post('/create-favorite-list', favoriteController.create);
 router.put('/favorite-product', favoriteController.favoriteProduct);
 router.put('/unfavorite-product', favoriteController.unFavoriteProduct);
 router.get('/user-favorites', favoriteController.getFavorites);
+
+router.post('/answer', answerController.create);
+router.get('/answers', answerController.readProduct);
+router.delete('/delete-answer', answerController.destroy);
 
 router.post('/comment', commentController.create);
 router.delete('/delete-comment', commentController.destroy);
