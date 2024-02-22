@@ -1,14 +1,16 @@
 import *as React from "react";
 import { Container, Container1, Title, SubTitle, Image } from './style';
 
-function ProdutoCard () {
+interface Produto { title: string; preço: string; imagem: string; } 
+
+function ProdutoCard ({title, preço, imagem}:Produto) {
     return (
     <div>
         <Container>
-            <Image source={require('../../../assets/BabyGroot.png')}/>
-            <Container1>
-                <Title>Coleção Marvel ...</Title>
-                <SubTitle>R$ 299,00</SubTitle>
+        <Image source={imagem}/>
+        <Container1>
+                <Title numberOfLines={1} ellipsizeMode="tail">{title}</Title>
+                <SubTitle>{preço}</SubTitle>
             </Container1>
         </Container>
     </div>

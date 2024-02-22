@@ -9,7 +9,6 @@ export const Container = styled.View`
     border-radius: 0.5rem;
     border: 2px solid #F4D831;
     padding: 0.5rem;
-    margin: 1rem 2rem;
     box-shadow: 0px 4px 4px  #D9D9D9;
 `
 export const Container1 = styled.View`
@@ -18,7 +17,7 @@ export const Container1 = styled.View`
 `
 
 export const Image = styled.Image`
-    width: 3.9rem;
+    width: 100%;
     height: 5.9rem;
     margin: 0.5rem;
     display: flex;
