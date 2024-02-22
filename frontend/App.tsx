@@ -1,12 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import Login from "./src/pages/Tela_de_Login/";
+import Registro from './src/pages/pagina-de-registro/index';
+
 
 export default function App() {
   return (
     <View style={styles.container}>
       <Login/>
-      <StatusBar style="auto" />
     </View>
   );
 }
