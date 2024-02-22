@@ -22,9 +22,6 @@ interface User {
 let data: Prisma.UserCreateManyInput[] = [];
 
 export async function userSeed() {
-  await prisma.cart.deleteMany();
-  await prisma.favorites.deleteMany();
-  await prisma.user.deleteMany();
   // criar 100 entradas no banco de dados
   for (let i = 0; i < 100; i++) {
     // criar hash e salt a partir de senha aleatória
