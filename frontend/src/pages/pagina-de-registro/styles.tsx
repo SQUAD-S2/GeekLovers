@@ -2,12 +2,34 @@ import styled from 'styled-components/native';
 import LinearGradient from "react-native-linear-gradient";
 
 export const Title = styled.Text`
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.9rem 2rem ;
+    background-color: #F4D831;
+    width: 100vw;
+`
+
+export const Container1 = styled.View`
+    padding-top: 2rem;
+    width: 100vw; 
+    display: flex;
+    align-items: center;
+`
+
+export const SubTitle = styled.Text`
+    font-family: Honk;
     text-aling: center;
     font-size: 3.25rem;
-    padding: 1rem 0 4rem 5rem;
+    
+`
+
+export const Container2 = styled.View`
+    display: flex;
+    align-items: flex-start;
 `
 
 export const InputLabel = styled.Text`
+    float: left;
     text-aling: left;
     color: #988A3A;
 
@@ -21,23 +43,25 @@ export const Input = styled.TextInput`
     border-width: 0.13rem;
     border-style: solid;
     border-color: #F3C63C;
+    border: 2px solid;
+    border-image: linear-gradient(180deg, #F3C63C 0%, #E84E99 100%);
+    border-image-slice: 1;
 `
 
 export const TextTerms = styled.Text`
+    padding: 1rem;
     text-align: center;
-    color: red;
+    color: #03030380;
 `
 
 export const Button1 = styled.TouchableOpacity` 
-    padding: 1.4rem;
+    margin-top: 0.2rem;
+    padding-top: 0.9125rem;
     align-items: center; 
-    gap: 1rem; 
     border-radius: 1rem;
     background: #EA618A; 
-    margin-top: 1rem; 
-    margin-right: 1rem; 
-    width: 27rem; 
-    height: 4.5rem; 
+    width: 21.125rem;
+    height: 3.8125rem;
     box-shadow: 0.1rem 0.2rem  rgba(0, 0, 0, 0.25); 
 ` 
 export const ButtonText1 = styled.Text` 

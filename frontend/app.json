@@ -26,5 +26,11 @@
     "web": {
       "favicon": "./assets/favicon.png"
     }
+    ,
+    "extra": {
+      "fontFamily": {
+        "Honk": "../src/fonts/Honk-Regular.ttf"
+      }
+    }
   }
 }
