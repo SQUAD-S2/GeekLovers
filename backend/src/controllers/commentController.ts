@@ -1,6 +1,5 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
-import Utils from './utils';
 import Auth from '../config/auth';
 
 const prisma = new PrismaClient();
