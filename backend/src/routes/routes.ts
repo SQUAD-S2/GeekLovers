@@ -16,13 +16,12 @@ router.get('/userInfo', authController.getDetails);
 
 router.post('/user', userController.create);
 router.get('/users', userController.show);
-router.get('/user/:id', userController.index);
-router.put('/user/:id', userController.update);
-router.put('/update-password/:id', userController.updatePassword);
-router.delete('/user-delete/:id', userController.destroy);
+router.get('/user', userController.index);
+router.put('/user', userController.update);
+router.put('/update-password', userController.updatePassword);
+router.delete('/delete-user', userController.destroy);
 
 router.post('/product', productController.create);
-router.get('/products', productController.read);
 router.get('/products', productController.read);
 router.get('/user-products', productController.readUser);
 router.put('/product', productController.update);
