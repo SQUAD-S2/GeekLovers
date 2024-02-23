@@ -30,16 +30,6 @@ export default  {
         }
     },
 
-    async read (req: Request, res: Response) 
-    {
-        try {
-            const product = await prisma.cart.findMany();
-            return res.status(201).json(product)
-        } catch (error: any) {
-            return res.status(500).json({error: error.message})
-        }
-    },
-
     async readUser (req: Request, res: Response) 
     {
         try {

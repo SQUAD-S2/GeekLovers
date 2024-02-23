@@ -150,7 +150,35 @@ class UserController {
         return response.status(403).json({ message: 'Não autorizado' });
       }
       const userId = Number(payload.sub);
-      const user = await prisma.user.delete({
+      // verificar se usuário existe
+      const user = await prisma.user.findUnique({
+        where: { id: userId },
+      });
+      if (!user) {
+        return response.status(404).json({ message: 'Usuário não encontrado' });
+      }
+
+      // deletar relações do usuário
+      await prisma.answer.deleteMany({
+        where: { userId: userId },
+      });
+      await prisma.comment.deleteMany({
+        where: { userId: userId },
+      });
+      await prisma.productsOnCart.deleteMany({
+        where: { userId: userId },
+      });
+      await prisma.cart.deleteMany({
+        where: { userId: userId },
+      });
+      await prisma.product.deleteMany({
+        where: { userId: userId },
+      });
+      await prisma.favorites.deleteMany({
+        where: { userId: userId },
+      });
+
+      const deletedUser = await prisma.user.delete({
         where: {
           id: Number(userId),
         },

@@ -73,6 +73,7 @@ model Product {
 }
 
 model Comment {
+  id                         Int       @id @default(autoincrement())
   text                       String
   date                       DateTime  @default(now())
 
@@ -84,7 +85,6 @@ model Comment {
 
   answer                     Answer?
 
-  @@id([userId, productId])
   @@map("comment")
 }
 
@@ -96,11 +96,10 @@ model Answer {
   userId                     Int       @map("id_user")
 
 
-  comment                    Comment   @relation(fields: [buyerId, productId], references: [userId, productId])
-  buyerId                    Int       @map("id_autor")
-  productId                  Int       @map("id_product")
+  comment                    Comment   @relation(fields: [commentId], references: [id])
+  commentId                  Int @unique
 
-  @@id([buyerId, productId])
+  @@id([commentId, userId])
   @@map("answer")
 }
 

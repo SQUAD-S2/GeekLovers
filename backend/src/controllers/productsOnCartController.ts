@@ -15,7 +15,7 @@ export default  {
             if (!payload) { return res.status(403).json({ message: "Não autorizado" }) }
 
             const userId = Number(payload.sub);
-            const { productId } = req.body;
+            const productId = Number(req.body.productId);
 
             let cartProductInput : Prisma.ProductsOnCartCreateInput = {
                 user: { connect: { userId: userId } },
@@ -64,14 +64,14 @@ export default  {
 
     async removeProduct (req: Request, res: Response) 
     {
+        // reduzir a quantidade de um produto no carrinho
         try {
             const token = auth.getToken(req);
             const payload = auth.decodeJWT(token);
             if (!payload) { return res.status(403).json({ message: "Não autorizado" }) }
 
             const userId = Number(payload.sub);
-            const { productId } = req.body;
-
+            const productId = Number(req.body.productId);
             const item = await prisma.productsOnCart.findFirst({ where: { userId: userId, productId: productId }}); 
             if (!item) { return res.status(404).json({ error: "Produto não existe nesse carrinho" }) }
             
@@ -107,15 +107,16 @@ export default  {
         }
     },
     
-    async destroy (req: Request, res: Response) 
+    async destroy (req: Request, res: Response)
     {
+        /// excluir um produto do carrinho
         try {
             const token = auth.getToken(req);
             const payload = auth.decodeJWT(token);
             if (!payload) { return res.status(403).json({ message: "Não autorizado" }) }
 
             const userId = Number(payload.sub);
-            const { productId } = req.body;
+            const productId = Number(req.body.productId);
 
             const productCart = await prisma.productsOnCart.findFirst({ where: { userId: userId, productId: productId }} );
             if (!productCart) { return res.status(404).json({ error: "Produto não existe nesse carrinho" }) }
