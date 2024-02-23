@@ -1,11 +1,5 @@
 import styled from 'styled-components/native';
 
-export const Tela = styled.View`
-    display: flex;
-    height: 100vh;
-    background: #F3F3F3;
-`
-
 export const Image = styled.Image`
     width: 100vw;
     height: 16.8125rem;
