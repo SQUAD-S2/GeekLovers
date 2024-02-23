@@ -9,7 +9,7 @@ function ProdutoCard ({title, preço, imagem}:Produto) {
     const navigation = useNavigation ();
     return (
     <div>
-        <TouchableOpacity onPress={()=> navigation.navigate('Favoritos' as never)}>
+        <TouchableOpacity onPress={()=> navigation.navigate('ProdutoDetalhes' as never)}>
         <Container>
         <Image source={imagem}/>
         <Container1>

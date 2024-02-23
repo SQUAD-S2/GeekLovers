@@ -6,6 +6,7 @@ import Favoritos from './src/pages/Favoritos';
 import Login from './src/pages/Login';
 import MainNavigator from './src/router/MainNavigator';
 import Registro from './src/pages/Registro';
+import ProdutoDetalhes from './src/pages/ProdutoDetalhes';
 
 export default function App() {
     return (
