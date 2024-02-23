@@ -15,13 +15,19 @@ export default  {
             if (!payload) { return res.status(403).json({ message: "Não autorizado" }) }
 
             const productId = Number(req.body.productId);
-            const userId = Number(req.body.userId);
+            const ownerEmail = req.body.userEmail;
+            const owner = await prisma.user.findUnique({
+              where: { email: ownerEmail },
+            });
+            if (!owner) {
+              return response.status(404).json({ message: 'usuário não encontrado' });
+            }
             const { text } = req.body;
 
             const comment = await prisma.comment.findFirst({
               where: {
                 AND: {
-                    userId: userId,
+                    userId: owner.id,
                     productId: productId,
                 },
               },

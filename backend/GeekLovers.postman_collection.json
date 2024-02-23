@@ -1009,8 +1009,8 @@
 									"type": "text"
 								},
 								{
-									"key": "userId",
-									"value": "1",
+									"key": "ownerEmail",
+									"value": "exemplo@gmail.com",
 									"type": "text"
 								}
 							]
@@ -1023,6 +1023,49 @@
 							"port": "3333",
 							"path": [
 								"answer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete answer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTcwODU2MTU0NzY5MSwiZXhwIjoxNzA4NTYyMTUyNDkxfQ.ACTmLsUSNw7ofpXnezOlyuAoCJ_xRRoA8EMijUDCX0Yk3EmlcLaiPRSCHpBk0bACVh5EYrMI5kU7CfdXqqX4gY6l7F-aKZsrIToyN0GnAyVLskE-3KWCw8HcbAYgK4ajRtp398zTH1x3TOHnAPYhuBquHKBSGegFqsEcwIUuyU2PENn1MkYGrMedcZ_1M668N0FDLlnFaC_721WKHUWXe54YxyXvMMq-izm8CCU64FUGZJ6qCZWi5O5bD1KfPJFEJqarj4tGWB6whTnjZ7DNtug6XngXpW4ezI6uBpzRyopuLAzrUgV0-K8h6kAGBPb99n6OEGrRdbsRy7tYrskZIhbU4kuXb6icgQv83LP-dv5U4y2-m0LKeS68FSVCa4ygscYuWbjda5vSGSowRQql-cQfFaf2LZG_UcKjlJeahd1Y3rL-Dp4hv2vAvAV6FrR9_cm5aPevsJh-mF5RGIoZ6ej85ZMJZhIqkU_MFSdJnoBJzsrSe0D9y1-EaNi_jLlgyEgbtwrIWimtFXOFo4qDcU0maqTl7I0Q5BJWn0oWYxTMJs1FR_q_tLPz91Y0ZlTSOwgu5RsWWBkubJ-D3PX0dqhpKii7kBsOYxdfePfQ5K6Y4A3Dx2uWQ0M51n8aCRWIbTBb3fn7H9rmfYAXXxaph495YLDQW3zpLv6guEQX21U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "ownerEmail",
+									"value": "exemplo@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "productId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3333/delete-answer",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"delete-answer"
 							]
 						}
 					},
