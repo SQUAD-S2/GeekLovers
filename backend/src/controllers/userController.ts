@@ -1,6 +1,9 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
 import Auth from '../config/auth';
+import handlebars from 'handlebars';
+import path from 'path';
+import { readRenderHtml, transport } from '../config/mailer';
 
 const prisma = new PrismaClient();
 
@@ -35,6 +38,41 @@ class UserController {
         hash,
         salt,
       };
+
+      // enviar email de boas vindas para o usuário
+      const pathTemplate = path.resolve(__dirname, '..', '..', 'templates', 'messageTemplate.html');
+      readRenderHtml(
+        path.join(pathTemplate, 'messageTemplate.html'),
+        (err: any, htmlTemplate: string) => {
+          const template = handlebars.compile(htmlTemplate);
+          const replacements = {
+            name: request.body.name,
+            message: 'Seja Bem Vindo!!',
+          };
+
+          // readRenderHtml(pathTemplate, (htmlTemplate: any) => {
+          //   //Pegando o template para mensagens de boas vindas
+          //   const template = handlebars.compile(htmlTemplate);
+          //   const replacements = {
+          //     name: request.body.name,
+          //     message: 'Seja Bem Vindo!!',
+          //   };
+          const htmlToSend = template(replacements);
+
+          const message = {
+            from: process.env.MAIL_SENDER,
+            to: request.body.email,
+            subject: 'Bem vindo',
+            html: htmlToSend,
+          };
+
+          // Ao enviar email, ocorre erro de credenciais
+          transport.sendMail(message, (error: any) => {
+            console.log(error);
+            throw error;
+          });
+        },
+      );
 
       const user = await prisma.user.create({ data: userInput });
       return response.status(201).json(user);
