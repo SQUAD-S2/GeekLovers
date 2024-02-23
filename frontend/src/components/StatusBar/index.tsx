@@ -1,7 +1,7 @@
 import *as React from "react";
-import { Text, Container, Container1, Title, SubTitle, Image, Image1 } from './style';
+import { Text, Container, Container1, Title, Image, Image1 } from './style';
 
-function StatusBar () {
+export function StatusBar () {
     return (
         <Container>
             <Text>9:14</Text>
@@ -14,4 +14,10 @@ function StatusBar () {
     )
 }
 
-export default StatusBar ;
+export function StatusBar2 () {
+    return (
+        <Container>
+            <Text>9:14</Text>
+        </Container>
+    )
+}

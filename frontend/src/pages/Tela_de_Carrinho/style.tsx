@@ -15,31 +15,31 @@ export const Container = styled.View`
 `;
 
 export const TitleText = styled.Text`
-    width: 123px;
-    height: 42px;
-    font-family: Roboto;
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 42px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: #000000;
-    margin-right: 210px;
-`;
+  width: 123px;
+  height: 42px;
+  font-family: Roboto;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 42px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #000000;
+  margin-right: 210px;
+`
 
 export const Text = styled.Text`
-    width: 72px;
-    height: 25px;
-    font-family: Roboto;
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 42px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: #03030380;
-`;
+  width: 72px;
+  height: 25px;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 42px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #03030380;
+`
 
 export const ImagemPerfil = styled.Image`
   width: 48px;
   height: 48px;
-`;
+`
