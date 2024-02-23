@@ -1,0 +1,1065 @@
+{
+	"info": {
+		"_postman_id": "86e75034-45fc-4fa4-be28-f95ba9a87289",
+		"name": "GeekLovers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32419699"
+	},
+	"item": [
+		{
+			"name": "User Request",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "cpf",
+									"value": "12345674912",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "exemplo@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "gabriel de araujo",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "11-02-2001",
+									"type": "text"
+								},
+								{
+									"key": "profilePicture",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "card",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "rua 1 bairro 2",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "senha",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3333/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read all user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMSwiaWF0IjoxNzA4NjI5ODM2NDk3LCJleHAiOjE3MDg2MzA0NDEyOTd9.rBM-M7cb0rdO5Sqeyv8XUe8njyJKhdhwbIqdTgTE37GPhRxtPkSDf1HaRM5dSyt8ZmdRoos3FfjlGBQq8xpKDxJNAz8_DOLU14TR6Sg6ZQAmF19TzjEQnOLJ-CDD1xrrgiYMqhpJcvxOzGXy0SE0zRWRCEEuFy9ZWzatDZsAdQ4lC5kQRMmeLgR7tlid9qc7SV6QIyphTJiUbvYBg2ApteLTLWQuGxsIjcW85F9dwcqiRKy9kvNKdldekTd58mv86zblOQV-pwjHWdeJYwQC-aH0MU-bjYnBhb4q42rnGooKamLV1kMI2U7TXtKt4p3RS9WNO1Bvsy679Exo0d5ky39og4ilQX2Ig4PAso4Jbc_TGxdfcKpdjGJzfvHAnR01rD53u3GVMjOq8gWBlZdG4pCZk43Qa-O643tMhZjl6ti47MPOa_GbbAuJm5KlYfzyVQsnz0JkDFJffPF7i_LogcoWswbSCCJMFESAd67BJU2NuiVqYp0xqL08pNbwqOcIh4AdWHAqcnGa4MwHndhCtFYdrbcgJLtKL8sJ4uX2XoGtgsFoMAywnWxzYr2pwxc55i2g3tO5_ZIjAX69yTKr_dsDSWHIPZ4M8n9z1wMMCw99TzLlTR-Bf9yOkM-U4s4omm7vwkzlSv2NxIUwSSl7IcsspX7EeN8jC1SBEWB0jkk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMiwiaWF0IjoxNzA4NjMwOTEzODM5LCJleHAiOjE3MDg2MzE1MTg2Mzl9.JMopKfsxntFsSgoX90g2yObV3q_aq0LQayvBAzbX4DY7qqcdCOR9lXJP6HrK3EqmTUj7lbYILERYC67984tU-TtL-IRvZduaCkzuqMsVmxJzuys6kdi147i5vwfnMo_6-JvXlZdGyaNdyVdceKH8whZfwthDHjHHDDkunaTc79pBuXtdNCTNgcqXvUMGV3PcTFAp__RYPtKY7G6dr0gAjAbZ8bCB-L8T_lG0-q7yFboPPnt0sB7tnoVYEXH8j9bztOZouYEro1perHNt_gwKJTKZ-1LYG336UZXWIyLy1ynQHH-JGJQvUECcGu_20sBOrfJh59xI2Z-CktZl6oR8f04cFnSUkXH0nKDVNrD8mN-b-7wh5vAbw8Je3-xMB4pcFAannq_o0BERmjR7uaxJKt5TrRBbxNkRMm10Fh97Wj4Zc-Btj3dgZWNI9JUPBCSvUlBHpO5NW2GrEeLtfiDRuv-vPT33pcuJZLZ6XjOs29ITOoWUeKBBmso3LQ08mfMYaO1aZiGtnz7TRtZzAqQ3SyNahzs0LNP4fLPLOl8SnD0YP2K5tRgit_YcuhbSSIIIkROjGPBICo8EcUG5f6gaZ9prRlhCA2xfux7f07rjes0oSxZjwrL6wlKc0-bmK85J6VyyFwKf2AN3YblstaFTxcyYqxy1Tt17dPOILCOOATw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "role",
+									"value": "MODERATOR",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3333/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMSwiaWF0IjoxNzA4NjI5ODM2NDk3LCJleHAiOjE3MDg2MzA0NDEyOTd9.rBM-M7cb0rdO5Sqeyv8XUe8njyJKhdhwbIqdTgTE37GPhRxtPkSDf1HaRM5dSyt8ZmdRoos3FfjlGBQq8xpKDxJNAz8_DOLU14TR6Sg6ZQAmF19TzjEQnOLJ-CDD1xrrgiYMqhpJcvxOzGXy0SE0zRWRCEEuFy9ZWzatDZsAdQ4lC5kQRMmeLgR7tlid9qc7SV6QIyphTJiUbvYBg2ApteLTLWQuGxsIjcW85F9dwcqiRKy9kvNKdldekTd58mv86zblOQV-pwjHWdeJYwQC-aH0MU-bjYnBhb4q42rnGooKamLV1kMI2U7TXtKt4p3RS9WNO1Bvsy679Exo0d5ky39og4ilQX2Ig4PAso4Jbc_TGxdfcKpdjGJzfvHAnR01rD53u3GVMjOq8gWBlZdG4pCZk43Qa-O643tMhZjl6ti47MPOa_GbbAuJm5KlYfzyVQsnz0JkDFJffPF7i_LogcoWswbSCCJMFESAd67BJU2NuiVqYp0xqL08pNbwqOcIh4AdWHAqcnGa4MwHndhCtFYdrbcgJLtKL8sJ4uX2XoGtgsFoMAywnWxzYr2pwxc55i2g3tO5_ZIjAX69yTKr_dsDSWHIPZ4M8n9z1wMMCw99TzLlTR-Bf9yOkM-U4s4omm7vwkzlSv2NxIUwSSl7IcsspX7EeN8jC1SBEWB0jkk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "newPassword",
+									"value": "4567",
+									"type": "text"
+								},
+								{
+									"key": "currentPassword",
+									"value": "senha",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3333/update-password",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"update-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMSwiaWF0IjoxNzA4NjI5ODM2NDk3LCJleHAiOjE3MDg2MzA0NDEyOTd9.rBM-M7cb0rdO5Sqeyv8XUe8njyJKhdhwbIqdTgTE37GPhRxtPkSDf1HaRM5dSyt8ZmdRoos3FfjlGBQq8xpKDxJNAz8_DOLU14TR6Sg6ZQAmF19TzjEQnOLJ-CDD1xrrgiYMqhpJcvxOzGXy0SE0zRWRCEEuFy9ZWzatDZsAdQ4lC5kQRMmeLgR7tlid9qc7SV6QIyphTJiUbvYBg2ApteLTLWQuGxsIjcW85F9dwcqiRKy9kvNKdldekTd58mv86zblOQV-pwjHWdeJYwQC-aH0MU-bjYnBhb4q42rnGooKamLV1kMI2U7TXtKt4p3RS9WNO1Bvsy679Exo0d5ky39og4ilQX2Ig4PAso4Jbc_TGxdfcKpdjGJzfvHAnR01rD53u3GVMjOq8gWBlZdG4pCZk43Qa-O643tMhZjl6ti47MPOa_GbbAuJm5KlYfzyVQsnz0JkDFJffPF7i_LogcoWswbSCCJMFESAd67BJU2NuiVqYp0xqL08pNbwqOcIh4AdWHAqcnGa4MwHndhCtFYdrbcgJLtKL8sJ4uX2XoGtgsFoMAywnWxzYr2pwxc55i2g3tO5_ZIjAX69yTKr_dsDSWHIPZ4M8n9z1wMMCw99TzLlTR-Bf9yOkM-U4s4omm7vwkzlSv2NxIUwSSl7IcsspX7EeN8jC1SBEWB0jkk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/delete-user",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"delete-user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentication Requests Copy",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "exemplo@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "senha",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3333/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Infos with Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTcwODU2MTU0NzY5MSwiZXhwIjoxNzA4NTYyMTUyNDkxfQ.ACTmLsUSNw7ofpXnezOlyuAoCJ_xRRoA8EMijUDCX0Yk3EmlcLaiPRSCHpBk0bACVh5EYrMI5kU7CfdXqqX4gY6l7F-aKZsrIToyN0GnAyVLskE-3KWCw8HcbAYgK4ajRtp398zTH1x3TOHnAPYhuBquHKBSGegFqsEcwIUuyU2PENn1MkYGrMedcZ_1M668N0FDLlnFaC_721WKHUWXe54YxyXvMMq-izm8CCU64FUGZJ6qCZWi5O5bD1KfPJFEJqarj4tGWB6whTnjZ7DNtug6XngXpW4ezI6uBpzRyopuLAzrUgV0-K8h6kAGBPb99n6OEGrRdbsRy7tYrskZIhbU4kuXb6icgQv83LP-dv5U4y2-m0LKeS68FSVCa4ygscYuWbjda5vSGSowRQql-cQfFaf2LZG_UcKjlJeahd1Y3rL-Dp4hv2vAvAV6FrR9_cm5aPevsJh-mF5RGIoZ6ej85ZMJZhIqkU_MFSdJnoBJzsrSe0D9y1-EaNi_jLlgyEgbtwrIWimtFXOFo4qDcU0maqTl7I0Q5BJWn0oWYxTMJs1FR_q_tLPz91Y0ZlTSOwgu5RsWWBkubJ-D3PX0dqhpKii7kBsOYxdfePfQ5K6Y4A3Dx2uWQ0M51n8aCRWIbTBb3fn7H9rmfYAXXxaph495YLDQW3zpLv6guEQX21U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/userInfo",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"userInfo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product Request",
+			"item": [
+				{
+					"name": "Create product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwODYzOTU4MTA0MiwiZXhwIjoxNzA4NjQwMTg1ODQyfQ.XFeLLtQhVMbqFFZedEyNy9gBv5sryP98_U65_OfWtnKxeuvg_pn92oIvVKeROSEums7q_ZmmFVoXQ0a1sujbMGHG2XlQ6zfX_RfTgGJjXH4GsSjbGnLmsxuPYnohCVcrkQiXYFBl7fxzsOSgqjokQ3oKm3nx9GH4Y-yfM8PiOdGHI9CapjXfA9--fNLtjK5oTOqPLmQmdC4GG1vzgKj33-ooTnUkuKsZj4DnOw_Pb0DYkaAxxGLqeWqX3im6cm6GbNDvd_OSj0DK9kaTUC-vmoO6DV-iiK78VDreIQDJtzvS2qSFO3fjrUuZwyqsyNRg5k84rlo-mTtQgU1QbgwhP8Yh6dFxUybFcoRehLmnI4cfq455joqJxfVe_GDXeShxUKFa6r7yIA1cvT7YyHRK2rBq7KlN5S7Wj1hxYQ98PtBOC8ZHYQfhtQmjCFPJmpZJdwBiYSevMxLbaXrk7_C_6EP95wWkGlCYTjA5_Fj2lQSQ7k6W1sFNetAB3kysegzRVHl42-44nbq5PPChxRpwJnRKNwc4WR0rPUuNSCKZdltbman1owQqV6EVJijLQjrURgfYQNELRWZb-mJwVH5pqIIbTRy3a6duusJtqKlKbPNQrT0I01uI1xAZVewhRegupgubE78QfZcEqEjtsDLe_hmDQnRcfDSFyHOOKboY8ho",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "produto 1",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "10.00",
+									"type": "text"
+								},
+								{
+									"key": "photos",
+									"value": "url1",
+									"type": "text"
+								},
+								{
+									"key": "photos",
+									"value": "url2",
+									"type": "text"
+								},
+								{
+									"key": "features",
+									"value": "brinquedo",
+									"type": "text"
+								},
+								{
+									"key": "features",
+									"value": "onepiece",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "produto legal",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "quantity",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "NEW",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3333/product",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read all products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/products",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "productId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3333/product",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read user products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMiwiaWF0IjoxNzA4NjMwOTEzODM5LCJleHAiOjE3MDg2MzE1MTg2Mzl9.JMopKfsxntFsSgoX90g2yObV3q_aq0LQayvBAzbX4DY7qqcdCOR9lXJP6HrK3EqmTUj7lbYILERYC67984tU-TtL-IRvZduaCkzuqMsVmxJzuys6kdi147i5vwfnMo_6-JvXlZdGyaNdyVdceKH8whZfwthDHjHHDDkunaTc79pBuXtdNCTNgcqXvUMGV3PcTFAp__RYPtKY7G6dr0gAjAbZ8bCB-L8T_lG0-q7yFboPPnt0sB7tnoVYEXH8j9bztOZouYEro1perHNt_gwKJTKZ-1LYG336UZXWIyLy1ynQHH-JGJQvUECcGu_20sBOrfJh59xI2Z-CktZl6oR8f04cFnSUkXH0nKDVNrD8mN-b-7wh5vAbw8Je3-xMB4pcFAannq_o0BERmjR7uaxJKt5TrRBbxNkRMm10Fh97Wj4Zc-Btj3dgZWNI9JUPBCSvUlBHpO5NW2GrEeLtfiDRuv-vPT33pcuJZLZ6XjOs29ITOoWUeKBBmso3LQ08mfMYaO1aZiGtnz7TRtZzAqQ3SyNahzs0LNP4fLPLOl8SnD0YP2K5tRgit_YcuhbSSIIIkROjGPBICo8EcUG5f6gaZ9prRlhCA2xfux7f07rjes0oSxZjwrL6wlKc0-bmK85J6VyyFwKf2AN3YblstaFTxcyYqxy1Tt17dPOILCOOATw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/user-products",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"user-products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMiwiaWF0IjoxNzA4NjMwOTEzODM5LCJleHAiOjE3MDg2MzE1MTg2Mzl9.JMopKfsxntFsSgoX90g2yObV3q_aq0LQayvBAzbX4DY7qqcdCOR9lXJP6HrK3EqmTUj7lbYILERYC67984tU-TtL-IRvZduaCkzuqMsVmxJzuys6kdi147i5vwfnMo_6-JvXlZdGyaNdyVdceKH8whZfwthDHjHHDDkunaTc79pBuXtdNCTNgcqXvUMGV3PcTFAp__RYPtKY7G6dr0gAjAbZ8bCB-L8T_lG0-q7yFboPPnt0sB7tnoVYEXH8j9bztOZouYEro1perHNt_gwKJTKZ-1LYG336UZXWIyLy1ynQHH-JGJQvUECcGu_20sBOrfJh59xI2Z-CktZl6oR8f04cFnSUkXH0nKDVNrD8mN-b-7wh5vAbw8Je3-xMB4pcFAannq_o0BERmjR7uaxJKt5TrRBbxNkRMm10Fh97Wj4Zc-Btj3dgZWNI9JUPBCSvUlBHpO5NW2GrEeLtfiDRuv-vPT33pcuJZLZ6XjOs29ITOoWUeKBBmso3LQ08mfMYaO1aZiGtnz7TRtZzAqQ3SyNahzs0LNP4fLPLOl8SnD0YP2K5tRgit_YcuhbSSIIIkROjGPBICo8EcUG5f6gaZ9prRlhCA2xfux7f07rjes0oSxZjwrL6wlKc0-bmK85J6VyyFwKf2AN3YblstaFTxcyYqxy1Tt17dPOILCOOATw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "description",
+									"value": "se divirta com esse brinquedo divertido",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "productId",
+									"value": "201",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "50",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3333/product",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMiwiaWF0IjoxNzA4NjMwOTEzODM5LCJleHAiOjE3MDg2MzE1MTg2Mzl9.JMopKfsxntFsSgoX90g2yObV3q_aq0LQayvBAzbX4DY7qqcdCOR9lXJP6HrK3EqmTUj7lbYILERYC67984tU-TtL-IRvZduaCkzuqMsVmxJzuys6kdi147i5vwfnMo_6-JvXlZdGyaNdyVdceKH8whZfwthDHjHHDDkunaTc79pBuXtdNCTNgcqXvUMGV3PcTFAp__RYPtKY7G6dr0gAjAbZ8bCB-L8T_lG0-q7yFboPPnt0sB7tnoVYEXH8j9bztOZouYEro1perHNt_gwKJTKZ-1LYG336UZXWIyLy1ynQHH-JGJQvUECcGu_20sBOrfJh59xI2Z-CktZl6oR8f04cFnSUkXH0nKDVNrD8mN-b-7wh5vAbw8Je3-xMB4pcFAannq_o0BERmjR7uaxJKt5TrRBbxNkRMm10Fh97Wj4Zc-Btj3dgZWNI9JUPBCSvUlBHpO5NW2GrEeLtfiDRuv-vPT33pcuJZLZ6XjOs29ITOoWUeKBBmso3LQ08mfMYaO1aZiGtnz7TRtZzAqQ3SyNahzs0LNP4fLPLOl8SnD0YP2K5tRgit_YcuhbSSIIIkROjGPBICo8EcUG5f6gaZ9prRlhCA2xfux7f07rjes0oSxZjwrL6wlKc0-bmK85J6VyyFwKf2AN3YblstaFTxcyYqxy1Tt17dPOILCOOATw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "productId",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3333/delete-product",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"delete-product"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Favoritos",
+			"item": [
+				{
+					"name": "Create favorite list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMiwiaWF0IjoxNzA4NjMwOTEzODM5LCJleHAiOjE3MDg2MzE1MTg2Mzl9.JMopKfsxntFsSgoX90g2yObV3q_aq0LQayvBAzbX4DY7qqcdCOR9lXJP6HrK3EqmTUj7lbYILERYC67984tU-TtL-IRvZduaCkzuqMsVmxJzuys6kdi147i5vwfnMo_6-JvXlZdGyaNdyVdceKH8whZfwthDHjHHDDkunaTc79pBuXtdNCTNgcqXvUMGV3PcTFAp__RYPtKY7G6dr0gAjAbZ8bCB-L8T_lG0-q7yFboPPnt0sB7tnoVYEXH8j9bztOZouYEro1perHNt_gwKJTKZ-1LYG336UZXWIyLy1ynQHH-JGJQvUECcGu_20sBOrfJh59xI2Z-CktZl6oR8f04cFnSUkXH0nKDVNrD8mN-b-7wh5vAbw8Je3-xMB4pcFAannq_o0BERmjR7uaxJKt5TrRBbxNkRMm10Fh97Wj4Zc-Btj3dgZWNI9JUPBCSvUlBHpO5NW2GrEeLtfiDRuv-vPT33pcuJZLZ6XjOs29ITOoWUeKBBmso3LQ08mfMYaO1aZiGtnz7TRtZzAqQ3SyNahzs0LNP4fLPLOl8SnD0YP2K5tRgit_YcuhbSSIIIkROjGPBICo8EcUG5f6gaZ9prRlhCA2xfux7f07rjes0oSxZjwrL6wlKc0-bmK85J6VyyFwKf2AN3YblstaFTxcyYqxy1Tt17dPOILCOOATw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/create-favorite-list",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"create-favorite-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Favorite product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMiwiaWF0IjoxNzA4NjMwOTEzODM5LCJleHAiOjE3MDg2MzE1MTg2Mzl9.JMopKfsxntFsSgoX90g2yObV3q_aq0LQayvBAzbX4DY7qqcdCOR9lXJP6HrK3EqmTUj7lbYILERYC67984tU-TtL-IRvZduaCkzuqMsVmxJzuys6kdi147i5vwfnMo_6-JvXlZdGyaNdyVdceKH8whZfwthDHjHHDDkunaTc79pBuXtdNCTNgcqXvUMGV3PcTFAp__RYPtKY7G6dr0gAjAbZ8bCB-L8T_lG0-q7yFboPPnt0sB7tnoVYEXH8j9bztOZouYEro1perHNt_gwKJTKZ-1LYG336UZXWIyLy1ynQHH-JGJQvUECcGu_20sBOrfJh59xI2Z-CktZl6oR8f04cFnSUkXH0nKDVNrD8mN-b-7wh5vAbw8Je3-xMB4pcFAannq_o0BERmjR7uaxJKt5TrRBbxNkRMm10Fh97Wj4Zc-Btj3dgZWNI9JUPBCSvUlBHpO5NW2GrEeLtfiDRuv-vPT33pcuJZLZ6XjOs29ITOoWUeKBBmso3LQ08mfMYaO1aZiGtnz7TRtZzAqQ3SyNahzs0LNP4fLPLOl8SnD0YP2K5tRgit_YcuhbSSIIIkROjGPBICo8EcUG5f6gaZ9prRlhCA2xfux7f07rjes0oSxZjwrL6wlKc0-bmK85J6VyyFwKf2AN3YblstaFTxcyYqxy1Tt17dPOILCOOATw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "productId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3333/favorite-product",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"favorite-product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read user favorites",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMiwiaWF0IjoxNzA4NjMwOTEzODM5LCJleHAiOjE3MDg2MzE1MTg2Mzl9.JMopKfsxntFsSgoX90g2yObV3q_aq0LQayvBAzbX4DY7qqcdCOR9lXJP6HrK3EqmTUj7lbYILERYC67984tU-TtL-IRvZduaCkzuqMsVmxJzuys6kdi147i5vwfnMo_6-JvXlZdGyaNdyVdceKH8whZfwthDHjHHDDkunaTc79pBuXtdNCTNgcqXvUMGV3PcTFAp__RYPtKY7G6dr0gAjAbZ8bCB-L8T_lG0-q7yFboPPnt0sB7tnoVYEXH8j9bztOZouYEro1perHNt_gwKJTKZ-1LYG336UZXWIyLy1ynQHH-JGJQvUECcGu_20sBOrfJh59xI2Z-CktZl6oR8f04cFnSUkXH0nKDVNrD8mN-b-7wh5vAbw8Je3-xMB4pcFAannq_o0BERmjR7uaxJKt5TrRBbxNkRMm10Fh97Wj4Zc-Btj3dgZWNI9JUPBCSvUlBHpO5NW2GrEeLtfiDRuv-vPT33pcuJZLZ6XjOs29ITOoWUeKBBmso3LQ08mfMYaO1aZiGtnz7TRtZzAqQ3SyNahzs0LNP4fLPLOl8SnD0YP2K5tRgit_YcuhbSSIIIkROjGPBICo8EcUG5f6gaZ9prRlhCA2xfux7f07rjes0oSxZjwrL6wlKc0-bmK85J6VyyFwKf2AN3YblstaFTxcyYqxy1Tt17dPOILCOOATw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/user-favorites",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"user-favorites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unfavorite product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMiwiaWF0IjoxNzA4NjMwOTEzODM5LCJleHAiOjE3MDg2MzE1MTg2Mzl9.JMopKfsxntFsSgoX90g2yObV3q_aq0LQayvBAzbX4DY7qqcdCOR9lXJP6HrK3EqmTUj7lbYILERYC67984tU-TtL-IRvZduaCkzuqMsVmxJzuys6kdi147i5vwfnMo_6-JvXlZdGyaNdyVdceKH8whZfwthDHjHHDDkunaTc79pBuXtdNCTNgcqXvUMGV3PcTFAp__RYPtKY7G6dr0gAjAbZ8bCB-L8T_lG0-q7yFboPPnt0sB7tnoVYEXH8j9bztOZouYEro1perHNt_gwKJTKZ-1LYG336UZXWIyLy1ynQHH-JGJQvUECcGu_20sBOrfJh59xI2Z-CktZl6oR8f04cFnSUkXH0nKDVNrD8mN-b-7wh5vAbw8Je3-xMB4pcFAannq_o0BERmjR7uaxJKt5TrRBbxNkRMm10Fh97Wj4Zc-Btj3dgZWNI9JUPBCSvUlBHpO5NW2GrEeLtfiDRuv-vPT33pcuJZLZ6XjOs29ITOoWUeKBBmso3LQ08mfMYaO1aZiGtnz7TRtZzAqQ3SyNahzs0LNP4fLPLOl8SnD0YP2K5tRgit_YcuhbSSIIIkROjGPBICo8EcUG5f6gaZ9prRlhCA2xfux7f07rjes0oSxZjwrL6wlKc0-bmK85J6VyyFwKf2AN3YblstaFTxcyYqxy1Tt17dPOILCOOATw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "productId",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3333/unfavorite-product",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"unfavorite-product"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Create user cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMiwiaWF0IjoxNzA4NjMwOTEzODM5LCJleHAiOjE3MDg2MzE1MTg2Mzl9.JMopKfsxntFsSgoX90g2yObV3q_aq0LQayvBAzbX4DY7qqcdCOR9lXJP6HrK3EqmTUj7lbYILERYC67984tU-TtL-IRvZduaCkzuqMsVmxJzuys6kdi147i5vwfnMo_6-JvXlZdGyaNdyVdceKH8whZfwthDHjHHDDkunaTc79pBuXtdNCTNgcqXvUMGV3PcTFAp__RYPtKY7G6dr0gAjAbZ8bCB-L8T_lG0-q7yFboPPnt0sB7tnoVYEXH8j9bztOZouYEro1perHNt_gwKJTKZ-1LYG336UZXWIyLy1ynQHH-JGJQvUECcGu_20sBOrfJh59xI2Z-CktZl6oR8f04cFnSUkXH0nKDVNrD8mN-b-7wh5vAbw8Je3-xMB4pcFAannq_o0BERmjR7uaxJKt5TrRBbxNkRMm10Fh97Wj4Zc-Btj3dgZWNI9JUPBCSvUlBHpO5NW2GrEeLtfiDRuv-vPT33pcuJZLZ6XjOs29ITOoWUeKBBmso3LQ08mfMYaO1aZiGtnz7TRtZzAqQ3SyNahzs0LNP4fLPLOl8SnD0YP2K5tRgit_YcuhbSSIIIkROjGPBICo8EcUG5f6gaZ9prRlhCA2xfux7f07rjes0oSxZjwrL6wlKc0-bmK85J6VyyFwKf2AN3YblstaFTxcyYqxy1Tt17dPOILCOOATw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/cart",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read user cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMiwiaWF0IjoxNzA4NjMwOTEzODM5LCJleHAiOjE3MDg2MzE1MTg2Mzl9.JMopKfsxntFsSgoX90g2yObV3q_aq0LQayvBAzbX4DY7qqcdCOR9lXJP6HrK3EqmTUj7lbYILERYC67984tU-TtL-IRvZduaCkzuqMsVmxJzuys6kdi147i5vwfnMo_6-JvXlZdGyaNdyVdceKH8whZfwthDHjHHDDkunaTc79pBuXtdNCTNgcqXvUMGV3PcTFAp__RYPtKY7G6dr0gAjAbZ8bCB-L8T_lG0-q7yFboPPnt0sB7tnoVYEXH8j9bztOZouYEro1perHNt_gwKJTKZ-1LYG336UZXWIyLy1ynQHH-JGJQvUECcGu_20sBOrfJh59xI2Z-CktZl6oR8f04cFnSUkXH0nKDVNrD8mN-b-7wh5vAbw8Je3-xMB4pcFAannq_o0BERmjR7uaxJKt5TrRBbxNkRMm10Fh97Wj4Zc-Btj3dgZWNI9JUPBCSvUlBHpO5NW2GrEeLtfiDRuv-vPT33pcuJZLZ6XjOs29ITOoWUeKBBmso3LQ08mfMYaO1aZiGtnz7TRtZzAqQ3SyNahzs0LNP4fLPLOl8SnD0YP2K5tRgit_YcuhbSSIIIkROjGPBICo8EcUG5f6gaZ9prRlhCA2xfux7f07rjes0oSxZjwrL6wlKc0-bmK85J6VyyFwKf2AN3YblstaFTxcyYqxy1Tt17dPOILCOOATw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/user-cart",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"user-cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Empty user cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMiwiaWF0IjoxNzA4NjMwOTEzODM5LCJleHAiOjE3MDg2MzE1MTg2Mzl9.JMopKfsxntFsSgoX90g2yObV3q_aq0LQayvBAzbX4DY7qqcdCOR9lXJP6HrK3EqmTUj7lbYILERYC67984tU-TtL-IRvZduaCkzuqMsVmxJzuys6kdi147i5vwfnMo_6-JvXlZdGyaNdyVdceKH8whZfwthDHjHHDDkunaTc79pBuXtdNCTNgcqXvUMGV3PcTFAp__RYPtKY7G6dr0gAjAbZ8bCB-L8T_lG0-q7yFboPPnt0sB7tnoVYEXH8j9bztOZouYEro1perHNt_gwKJTKZ-1LYG336UZXWIyLy1ynQHH-JGJQvUECcGu_20sBOrfJh59xI2Z-CktZl6oR8f04cFnSUkXH0nKDVNrD8mN-b-7wh5vAbw8Je3-xMB4pcFAannq_o0BERmjR7uaxJKt5TrRBbxNkRMm10Fh97Wj4Zc-Btj3dgZWNI9JUPBCSvUlBHpO5NW2GrEeLtfiDRuv-vPT33pcuJZLZ6XjOs29ITOoWUeKBBmso3LQ08mfMYaO1aZiGtnz7TRtZzAqQ3SyNahzs0LNP4fLPLOl8SnD0YP2K5tRgit_YcuhbSSIIIkROjGPBICo8EcUG5f6gaZ9prRlhCA2xfux7f07rjes0oSxZjwrL6wlKc0-bmK85J6VyyFwKf2AN3YblstaFTxcyYqxy1Tt17dPOILCOOATw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/empty-cart",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"empty-cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add one product to cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMiwiaWF0IjoxNzA4NjMwOTEzODM5LCJleHAiOjE3MDg2MzE1MTg2Mzl9.JMopKfsxntFsSgoX90g2yObV3q_aq0LQayvBAzbX4DY7qqcdCOR9lXJP6HrK3EqmTUj7lbYILERYC67984tU-TtL-IRvZduaCkzuqMsVmxJzuys6kdi147i5vwfnMo_6-JvXlZdGyaNdyVdceKH8whZfwthDHjHHDDkunaTc79pBuXtdNCTNgcqXvUMGV3PcTFAp__RYPtKY7G6dr0gAjAbZ8bCB-L8T_lG0-q7yFboPPnt0sB7tnoVYEXH8j9bztOZouYEro1perHNt_gwKJTKZ-1LYG336UZXWIyLy1ynQHH-JGJQvUECcGu_20sBOrfJh59xI2Z-CktZl6oR8f04cFnSUkXH0nKDVNrD8mN-b-7wh5vAbw8Je3-xMB4pcFAannq_o0BERmjR7uaxJKt5TrRBbxNkRMm10Fh97Wj4Zc-Btj3dgZWNI9JUPBCSvUlBHpO5NW2GrEeLtfiDRuv-vPT33pcuJZLZ6XjOs29ITOoWUeKBBmso3LQ08mfMYaO1aZiGtnz7TRtZzAqQ3SyNahzs0LNP4fLPLOl8SnD0YP2K5tRgit_YcuhbSSIIIkROjGPBICo8EcUG5f6gaZ9prRlhCA2xfux7f07rjes0oSxZjwrL6wlKc0-bmK85J6VyyFwKf2AN3YblstaFTxcyYqxy1Tt17dPOILCOOATw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "productId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3333/add-one-product",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"add-one-product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove one product to cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMiwiaWF0IjoxNzA4NjMwOTEzODM5LCJleHAiOjE3MDg2MzE1MTg2Mzl9.JMopKfsxntFsSgoX90g2yObV3q_aq0LQayvBAzbX4DY7qqcdCOR9lXJP6HrK3EqmTUj7lbYILERYC67984tU-TtL-IRvZduaCkzuqMsVmxJzuys6kdi147i5vwfnMo_6-JvXlZdGyaNdyVdceKH8whZfwthDHjHHDDkunaTc79pBuXtdNCTNgcqXvUMGV3PcTFAp__RYPtKY7G6dr0gAjAbZ8bCB-L8T_lG0-q7yFboPPnt0sB7tnoVYEXH8j9bztOZouYEro1perHNt_gwKJTKZ-1LYG336UZXWIyLy1ynQHH-JGJQvUECcGu_20sBOrfJh59xI2Z-CktZl6oR8f04cFnSUkXH0nKDVNrD8mN-b-7wh5vAbw8Je3-xMB4pcFAannq_o0BERmjR7uaxJKt5TrRBbxNkRMm10Fh97Wj4Zc-Btj3dgZWNI9JUPBCSvUlBHpO5NW2GrEeLtfiDRuv-vPT33pcuJZLZ6XjOs29ITOoWUeKBBmso3LQ08mfMYaO1aZiGtnz7TRtZzAqQ3SyNahzs0LNP4fLPLOl8SnD0YP2K5tRgit_YcuhbSSIIIkROjGPBICo8EcUG5f6gaZ9prRlhCA2xfux7f07rjes0oSxZjwrL6wlKc0-bmK85J6VyyFwKf2AN3YblstaFTxcyYqxy1Tt17dPOILCOOATw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "productId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3333/remove-one-product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"remove-one-product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove product from cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMiwiaWF0IjoxNzA4NjMwOTEzODM5LCJleHAiOjE3MDg2MzE1MTg2Mzl9.JMopKfsxntFsSgoX90g2yObV3q_aq0LQayvBAzbX4DY7qqcdCOR9lXJP6HrK3EqmTUj7lbYILERYC67984tU-TtL-IRvZduaCkzuqMsVmxJzuys6kdi147i5vwfnMo_6-JvXlZdGyaNdyVdceKH8whZfwthDHjHHDDkunaTc79pBuXtdNCTNgcqXvUMGV3PcTFAp__RYPtKY7G6dr0gAjAbZ8bCB-L8T_lG0-q7yFboPPnt0sB7tnoVYEXH8j9bztOZouYEro1perHNt_gwKJTKZ-1LYG336UZXWIyLy1ynQHH-JGJQvUECcGu_20sBOrfJh59xI2Z-CktZl6oR8f04cFnSUkXH0nKDVNrD8mN-b-7wh5vAbw8Je3-xMB4pcFAannq_o0BERmjR7uaxJKt5TrRBbxNkRMm10Fh97Wj4Zc-Btj3dgZWNI9JUPBCSvUlBHpO5NW2GrEeLtfiDRuv-vPT33pcuJZLZ6XjOs29ITOoWUeKBBmso3LQ08mfMYaO1aZiGtnz7TRtZzAqQ3SyNahzs0LNP4fLPLOl8SnD0YP2K5tRgit_YcuhbSSIIIkROjGPBICo8EcUG5f6gaZ9prRlhCA2xfux7f07rjes0oSxZjwrL6wlKc0-bmK85J6VyyFwKf2AN3YblstaFTxcyYqxy1Tt17dPOILCOOATw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "productId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3333/remove-product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"remove-product"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments ans Answers",
+			"item": [
+				{
+					"name": "Create comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwODYzOTU4MTA0MiwiZXhwIjoxNzA4NjQwMTg1ODQyfQ.XFeLLtQhVMbqFFZedEyNy9gBv5sryP98_U65_OfWtnKxeuvg_pn92oIvVKeROSEums7q_ZmmFVoXQ0a1sujbMGHG2XlQ6zfX_RfTgGJjXH4GsSjbGnLmsxuPYnohCVcrkQiXYFBl7fxzsOSgqjokQ3oKm3nx9GH4Y-yfM8PiOdGHI9CapjXfA9--fNLtjK5oTOqPLmQmdC4GG1vzgKj33-ooTnUkuKsZj4DnOw_Pb0DYkaAxxGLqeWqX3im6cm6GbNDvd_OSj0DK9kaTUC-vmoO6DV-iiK78VDreIQDJtzvS2qSFO3fjrUuZwyqsyNRg5k84rlo-mTtQgU1QbgwhP8Yh6dFxUybFcoRehLmnI4cfq455joqJxfVe_GDXeShxUKFa6r7yIA1cvT7YyHRK2rBq7KlN5S7Wj1hxYQ98PtBOC8ZHYQfhtQmjCFPJmpZJdwBiYSevMxLbaXrk7_C_6EP95wWkGlCYTjA5_Fj2lQSQ7k6W1sFNetAB3kysegzRVHl42-44nbq5PPChxRpwJnRKNwc4WR0rPUuNSCKZdltbman1owQqV6EVJijLQjrURgfYQNELRWZb-mJwVH5pqIIbTRy3a6duusJtqKlKbPNQrT0I01uI1xAZVewhRegupgubE78QfZcEqEjtsDLe_hmDQnRcfDSFyHOOKboY8ho",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "productId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "este produto é bom?",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3333/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTcwODYzOTc1NjE3NSwiZXhwIjoxNzA4NjQwMzYwOTc1fQ.LBYQEMsdxWSK9NSbNZS5OgDpvUjzA2KfVep83c8MuZATwrtcfUKWS_L549-c68_nlYrp0ENpqwdSrBRNnSSn--7MVyx9O6tk5s74fXejUjpQ3L_0GVKY7tgUBa4Y5uPp2ERKDMzgPoNBLS0l4SL3XJQ7tFNc3mc22gYExkH67z8yxr4FvAHE0Zh9_eX0zpwqqJ55ObgYfoV15TBSvkReahkkn6cF4J9uONXY5Xn4F_ezvpWkcByCA_NE897pJsXgnqUQb0Pe1N7G4r_YtCVdLZ9QiLvlDATU7EGLHq5Zgu7om4-9aXN33WMjOihUR39A730ibq2tufrJAp7yPJuwHXcafwfxqDXbBqcrgTjLDh9Frpgj1BdztNhZ5JLDPCbicWsqbrbfQANJWUaJH7RKNx4TmJbiWaR9I0VuryY9tT5DhFW9znCpVYigo5cgAPUgTpHGVqRCTb2faVYSHshXswYK9937WI9MHPymZixZ2OlJmoGqPabsDr-uKn8SE48xRDM8tfQr6yeWvMnHT0WG4G0cUaRaCpv01K9YPF7exKRrcJOXvA1tslqWhb50AZnT9loa-p94wAchEl_bOdLORNpHExHViQyLosyU6XKQ7O296R5W5_CulO4Kx4n3ormrswze3CVJxLALcphJvQQq7Gzzugp-actYNkzU_9bwFbE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "productId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3333/delete-comment",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"delete-comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create answer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTcwODYzOTc1NjE3NSwiZXhwIjoxNzA4NjQwMzYwOTc1fQ.LBYQEMsdxWSK9NSbNZS5OgDpvUjzA2KfVep83c8MuZATwrtcfUKWS_L549-c68_nlYrp0ENpqwdSrBRNnSSn--7MVyx9O6tk5s74fXejUjpQ3L_0GVKY7tgUBa4Y5uPp2ERKDMzgPoNBLS0l4SL3XJQ7tFNc3mc22gYExkH67z8yxr4FvAHE0Zh9_eX0zpwqqJ55ObgYfoV15TBSvkReahkkn6cF4J9uONXY5Xn4F_ezvpWkcByCA_NE897pJsXgnqUQb0Pe1N7G4r_YtCVdLZ9QiLvlDATU7EGLHq5Zgu7om4-9aXN33WMjOihUR39A730ibq2tufrJAp7yPJuwHXcafwfxqDXbBqcrgTjLDh9Frpgj1BdztNhZ5JLDPCbicWsqbrbfQANJWUaJH7RKNx4TmJbiWaR9I0VuryY9tT5DhFW9znCpVYigo5cgAPUgTpHGVqRCTb2faVYSHshXswYK9937WI9MHPymZixZ2OlJmoGqPabsDr-uKn8SE48xRDM8tfQr6yeWvMnHT0WG4G0cUaRaCpv01K9YPF7exKRrcJOXvA1tslqWhb50AZnT9loa-p94wAchEl_bOdLORNpHExHViQyLosyU6XKQ7O296R5W5_CulO4Kx4n3ormrswze3CVJxLALcphJvQQq7Gzzugp-actYNkzU_9bwFbE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "productId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "sim, ele é muito bom",
+									"type": "text"
+								},
+								{
+									"key": "userId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3333/answer",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"answer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read comments",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "productId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3333/comments",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
