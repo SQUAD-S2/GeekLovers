@@ -19,19 +19,16 @@ export async function productSeed() {
         description: faker.commerce.productDescription(),
         photos: [faker.image.url(), faker.image.url()],
         userId: i + 1, // conectando u user dessa forma, estamos atrelando um produto para cada usuário criado em userSeed
-        // carts:
-        //   i % 2 !== 0
-        //     ? { connect: { userId_productId: { userId: i + 1, productId: i + 1} } }
-        //     : undefined,
         favorites: i % 2 === 0 ? { connect: { userId: i + 1 } } : undefined,
         comments: {
           create: {
+            id: i+1,
             text: faker.lorem.sentence(),
-            user: { connect: { id: i + 1 } },
+            userId: i+1,
             answer: {
               create: {
                 text: faker.lorem.sentence(),
-                user: { connect: { id: i + 1 } },
+                userId: i+1,
               },
             },
           },
