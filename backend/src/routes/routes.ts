@@ -23,13 +23,13 @@ router.delete('/delete-user', userController.destroy);
 
 router.post('/product', productController.create);
 router.get('/products', productController.read);
+router.get('/product', productController.readProduct);
 router.get('/user-products', productController.readUser);
 router.put('/product', productController.update);
 router.delete('/delete-product', productController.destroy);
 
 router.post('/cart', cartController.create);
-router.get('/carts', cartController.read);
-router.get('user-cart', cartController.readUser);
+router.get('/user-cart', cartController.readUser);
 router.put('/empty-cart', cartController.emptyCart);
 
 router.put('/add-one-product', productsOnCartController.addProduct);
@@ -42,11 +42,10 @@ router.put('/unfavorite-product', favoriteController.unFavoriteProduct);
 router.get('/user-favorites', favoriteController.getFavorites);
 
 router.post('/answer', answerController.create);
-router.get('/answers', answerController.readProduct);
 router.delete('/delete-answer', answerController.destroy);
 
 router.post('/comment', commentController.create);
+router.get('/comments', commentController.readComments);
 router.delete('/delete-comment', commentController.destroy);
-
 
 export default router;

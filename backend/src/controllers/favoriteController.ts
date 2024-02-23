@@ -34,7 +34,7 @@ class FavoriteController {
         return response.status(403).json({ message: 'Não autorizado' });
       }
       const userId = Number(payload.sub);
-      const productId = request.body.productId;
+      const productId = Number(request.body.productId);
 
       const product = await prisma.product.findUnique({
         where: { id: productId },
@@ -66,7 +66,7 @@ class FavoriteController {
         return response.status(403).json({ message: 'Não autorizado' });
       }
       const userId = Number(payload.sub);
-      const productId = request.body.productId;
+      const productId = Number(request.body.productId);
 
       const product = await prisma.product.findUnique({
         where: { id: productId },

@@ -13,7 +13,9 @@ class CommentController {
         return response.status(403).json({ message: 'Não autorizado' });
       }
       const userId = Number(payload.sub);
-      const { productId, text } = request.body;
+      const productId = Number(request.body.productId);
+      const { text } = request.body;
+
 
       // checar se o produto existe
       const product = await prisma.product.findUnique({
@@ -21,6 +23,19 @@ class CommentController {
       });
       if (!product) {
         return response.status(404).json({ message: 'Produto não encontrado' });
+      }
+
+      const userComment = await prisma.comment.findFirst({
+        where: {
+          AND: {
+            userId: userId,
+            productId: productId,
+          },
+        },
+      });
+
+      if (userComment) {
+        return response.status(401).json({ message: 'Usuário já comentou' });
       }
 
       let commentInput: Prisma.CommentCreateInput = {
@@ -38,6 +53,21 @@ class CommentController {
     }
   }
 
+  async readComments(req: Request, res: Response) {
+    //le todos os comentario de um produto e suas respostas
+    try {
+      const productId = Number(req.body.productId);
+      const answers = await prisma.comment.findMany({
+        where: { id: productId },
+        include: { answer: true },
+      });
+
+      return res.status(201).json(answers);
+    } catch (error: any) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
   async destroy(request: Request, response: Response) {
     try {
       const token = Auth.getToken(request);
@@ -46,7 +76,7 @@ class CommentController {
         return response.status(403).json({ message: 'Não autorizado' });
       }
       const userId = Number(payload.sub);
-      const productId = request.body.productId;
+      const productId = Number(request.body.productId);
       // checar se o produto existe
       const product = await prisma.product.findUnique({
         where: { id: productId },
@@ -60,9 +90,12 @@ class CommentController {
       if (!user) return response.status(404).json({ message: 'Usuário não encontrado' });
 
       // checar se o comentário existe
-      const comment = await prisma.comment.findUnique({
+      const comment = await prisma.comment.findFirst({
         where: {
-          userId_productId: { userId: userId, productId: productId },
+          AND: {
+            userId: userId,
+            productId: productId,
+          },
         },
       });
       if (!comment) return response.status(404).json({ message: 'Comentário não encontrado' });
@@ -72,9 +105,12 @@ class CommentController {
         return response.status(403).json({ message: 'Usuário não tem permissão' });
       }
 
-      const deletedComment = await prisma.comment.delete({
+      const deletedComment = await prisma.comment.deleteMany({
         where: {
-          userId_productId: { userId: userId, productId: productId },
+          AND: {
+            userId: userId,
+            productId: productId,
+          },
         },
       });
       return response.status(201).json(deletedComment);
