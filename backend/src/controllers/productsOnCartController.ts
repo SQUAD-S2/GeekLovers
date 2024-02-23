@@ -1,6 +1,7 @@
 import { Prisma, PrismaClient } from "@prisma/client"
 import { Request, Response } from "express";
 import auth from '../config/auth';
+import { validationResult } from 'express-validator';
 
 
 const prisma = new PrismaClient();
@@ -10,6 +11,7 @@ export default  {
     async addProduct (req: Request, res: Response) 
     {
         try {
+            validationResult(req).throw();
             const token = auth.getToken(req);
             const payload = auth.decodeJWT(token);
             if (!payload) { return res.status(403).json({ message: "Não autorizado" }) }
@@ -58,7 +60,7 @@ export default  {
 
             return res.status(201).json({ message: "Item adicionado ao carrinho" });
         } catch (error: any) {
-            return res.status(500).json({ error: error.message });
+            return res.status(500).json({ error });
         }
     },
 
@@ -66,6 +68,7 @@ export default  {
     {
         // reduzir a quantidade de um produto no carrinho
         try {
+            validationResult(req).throw();
             const token = auth.getToken(req);
             const payload = auth.decodeJWT(token);
             if (!payload) { return res.status(403).json({ message: "Não autorizado" }) }
@@ -103,7 +106,7 @@ export default  {
             }
             return res.status(201).json({ message: "Item removido do carrinho" });
         } catch (error: any) {
-            return res.status(500).json({ error: error.message });
+            return res.status(500).json({ error });
         }
     },
     
@@ -111,6 +114,7 @@ export default  {
     {
         /// excluir um produto do carrinho
         try {
+            validationResult(req).throw();
             const token = auth.getToken(req);
             const payload = auth.decodeJWT(token);
             if (!payload) { return res.status(403).json({ message: "Não autorizado" }) }
@@ -140,7 +144,7 @@ export default  {
     
             return res.status(200).json({ message: 'Produto removido' });
         } catch (error: any) {
-            return res.status(500).json({ error: error.message });
+            return res.status(500).json({ error });
         }
     }
 

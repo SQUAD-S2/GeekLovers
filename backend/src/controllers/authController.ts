@@ -1,12 +1,14 @@
 import { Request, Response } from 'express';
 import Auth from '../config/auth';
 import { PrismaClient } from '@prisma/client';
+import { validationResult } from 'express-validator';
 
 const prisma = new PrismaClient();
 
 class AuthController {
   async login(request: Request, response: Response) {
     try {
+      validationResult(request).throw();
       const user = await prisma.user.findUnique({
         where: { email: request.body.email },
       });
@@ -21,7 +23,7 @@ class AuthController {
         return response.status(401).json({ message: 'Senha invalida' });
       }
     } catch (error) {
-      return response.status(500).json({ err: error });
+      return response.status(500).json({ error });
     }
   }
 
