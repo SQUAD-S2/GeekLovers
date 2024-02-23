@@ -1,5 +1,6 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
+import { validationResult } from 'express-validator';
 import Auth from '../config/auth';
 
 const prisma = new PrismaClient();
@@ -7,6 +8,7 @@ const prisma = new PrismaClient();
 class UserController {
   async create(request: Request, response: Response) {
     try {
+      validationResult(request).throw();
       const {
         cpf,
         email,
@@ -39,7 +41,7 @@ class UserController {
       const user = await prisma.user.create({ data: userInput });
       return response.status(201).json(user);
     } catch (error: any) {
-      return response.status(500).json({ error: error.message });
+      return response.status(500).json({ error });
     }
   }
 
@@ -73,6 +75,7 @@ class UserController {
 
   async update(request: Request, response: Response) {
     try {
+      validationResult(request).throw();
       const token = Auth.getToken(request);
       const payload = Auth.decodeJWT(token);
       if (!payload) {
@@ -98,12 +101,13 @@ class UserController {
 
       return response.status(201).json(user);
     } catch (error: any) {
-      return response.status(500).json({ error: error.message });
+      return response.status(500).json({ error });
     }
   }
 
   async updatePassword(request: Request, response: Response) {
     try {
+      validationResult(request).throw();
       const token = Auth.getToken(request);
       const payload = Auth.decodeJWT(token);
       if (!payload) {
@@ -138,7 +142,7 @@ class UserController {
         return response.status(401).json({ message: 'Senha Atual incorreta.' });
       }
     } catch (error: any) {
-      return response.status(500).json({ error: error.message });
+      return response.status(500).json({ error });
     }
   }
 

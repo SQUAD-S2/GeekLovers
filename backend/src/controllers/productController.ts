@@ -1,5 +1,6 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 import { Request, Response, response } from 'express';
+import { validationResult } from 'express-validator';
 import auth from '../config/auth';
 
 const prisma = new PrismaClient();
@@ -7,6 +8,7 @@ const prisma = new PrismaClient();
 export default {
   async create(req: Request, res: Response) {
     try {
+      validationResult(req).throw();
       const token = auth.getToken(req);
       const payload = auth.decodeJWT(token);
       if (!payload) {
@@ -33,7 +35,7 @@ export default {
 
       return res.status(201).json(product);
     } catch (error: any) {
-      return res.status(500).json({ error: error.message });
+      return res.status(500).json({ error });
     }
   },
 
@@ -48,6 +50,7 @@ export default {
 
   async readProduct(req: Request, res: Response) {
     try {
+      validationResult(req).throw();
       const productId = Number(req.body.productId);
 
       const product = await prisma.product.findUnique({
@@ -59,7 +62,7 @@ export default {
 
       return res.status(201).json(product);
     } catch (error: any) {
-      return res.status(500).json({ error: error.message });
+      return res.status(500).json({ error });
     }
   },
 
@@ -84,6 +87,7 @@ export default {
 
   async update(req: Request, res: Response) {
     try {
+      validationResult(req).throw();
       const token = auth.getToken(req);
       const payload = auth.decodeJWT(token);
       if (!payload) {
@@ -126,7 +130,7 @@ export default {
         return res.status(403).json({ message: 'Usuário não autorizado' });
       }
     } catch (error: any) {
-      return res.status(500).json({ error: error.message });
+      return res.status(500).json({ error });
     }
   },
 

@@ -1,12 +1,14 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
 import Auth from '../config/auth';
+import { validationResult } from 'express-validator';
 
 const prisma = new PrismaClient();
 
 class CommentController {
   async create(request: Request, response: Response) {
     try {
+      validationResult(request).throw();
       const token = Auth.getToken(request);
       const payload = Auth.decodeJWT(token);
       if (!payload) {
@@ -49,13 +51,14 @@ class CommentController {
       });
       return response.status(201).json(newComment);
     } catch (error: any) {
-      return response.status(500).json({ error: error.message });
+      return response.status(500).json({ error });
     }
   }
 
   async readComments(req: Request, res: Response) {
     //le todos os comentario de um produto e suas respostas
     try {
+      validationResult(req).throw();
       const productId = Number(req.body.productId);
       const answers = await prisma.comment.findMany({
         where: { id: productId },
@@ -64,12 +67,13 @@ class CommentController {
 
       return res.status(201).json(answers);
     } catch (error: any) {
-      return res.status(500).json({ error: error.message });
+      return res.status(500).json({ error });
     }
   }
 
   async destroy(request: Request, response: Response) {
     try {
+      validationResult(request).throw();
       const token = Auth.getToken(request);
       const payload = Auth.decodeJWT(token);
       if (!payload) {
@@ -115,7 +119,7 @@ class CommentController {
       });
       return response.status(201).json(deletedComment);
     } catch (error: any) {
-      return response.status(500).json({ error: error.message });
+      return response.status(500).json({ error });
     }
   }
 }
