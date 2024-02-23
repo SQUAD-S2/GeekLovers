@@ -9,43 +9,45 @@ import favoriteController from '../controllers/favoriteController';
 import commentController from '../controllers/commentController';
 import answerController from '../controllers/answerController';
 
+import {validatorUser, validatorProduct, validatorComment, validatorAnswer, validatorFavorites, validatorCart, validatorLogin} from '../config/validator'
+
 const router = Router();
 
-router.post('/login', authController.login);
+router.post('/login', validatorLogin('login')!, authController.login);
 router.get('/userInfo', authController.getDetails);
 
-router.post('/user', userController.create);
+router.post('/user', validatorUser('create')!, userController.create);
 router.get('/users', userController.show);
 router.get('/user', userController.index);
-router.put('/user', userController.update);
-router.put('/update-password', userController.updatePassword);
+router.put('/user', validatorUser('update')!, userController.update);
+router.put('/update-password', validatorUser('updatePassword')!, userController.updatePassword);
 router.delete('/delete-user', userController.destroy);
 
-router.post('/product', productController.create);
+router.post('/product', validatorUser('create')!, productController.create);
 router.get('/products', productController.read);
-router.get('/product', productController.readProduct);
+router.get('/product', validatorUser('readProduct')!,  productController.readProduct);
 router.get('/user-products', productController.readUser);
-router.put('/product', productController.update);
+router.put('/product', validatorUser('update')!, productController.update);
 router.delete('/delete-product', productController.destroy);
 
 router.post('/cart', cartController.create);
 router.get('/user-cart', cartController.readUser);
 router.put('/empty-cart', cartController.emptyCart);
 
-router.put('/add-one-product', productsOnCartController.addProduct);
-router.put('/remove-one-product', productsOnCartController.removeProduct);
-router.put('/remove-product', productsOnCartController.destroy);
+router.put('/add-one-product', validatorUser('addProduct')!, productsOnCartController.addProduct);
+router.put('/remove-one-product', validatorUser('removeProduct')!, productsOnCartController.removeProduct);
+router.put('/remove-product', validatorUser('destroy')!, productsOnCartController.destroy);
 
 router.post('/create-favorite-list', favoriteController.create);
-router.put('/favorite-product', favoriteController.favoriteProduct);
-router.put('/unfavorite-product', favoriteController.unFavoriteProduct);
+router.put('/favorite-product', validatorUser('favoriteProduct')!, favoriteController.favoriteProduct);
+router.put('/unfavorite-product', validatorUser('unFavoriteProduct')!, favoriteController.unFavoriteProduct);
 router.get('/user-favorites', favoriteController.getFavorites);
 
-router.post('/answer', answerController.create);
-router.delete('/delete-answer', answerController.destroy);
+router.post('/answer', validatorUser('create')!, answerController.create);
+router.delete('/delete-answer', validatorUser('destroy')!, answerController.destroy);
 
-router.post('/comment', commentController.create);
-router.get('/comments', commentController.readComments);
-router.delete('/delete-comment', commentController.destroy);
+router.post('/comment', validatorUser('create')!, commentController.create);
+router.get('/comments', validatorUser('readComments')!, commentController.readComments);
+router.delete('/delete-comment', validatorUser('destroy')!, commentController.destroy);
 
 export default router;

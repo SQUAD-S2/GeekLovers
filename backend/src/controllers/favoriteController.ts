@@ -1,5 +1,6 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
+import { validationResult } from 'express-validator';
 import Auth from '../config/auth';
 
 const prisma = new PrismaClient();
@@ -28,6 +29,7 @@ class FavoriteController {
 
   async favoriteProduct(request: Request, response: Response) {
     try {
+      validationResult(request).throw();
       const token = Auth.getToken(request);
       const payload = Auth.decodeJWT(token);
       if (!payload) {
@@ -60,6 +62,7 @@ class FavoriteController {
 
   async unFavoriteProduct(request: Request, response: Response) {
     try {
+      validationResult(request).throw();
       const token = Auth.getToken(request);
       const payload = Auth.decodeJWT(token);
       if (!payload) {

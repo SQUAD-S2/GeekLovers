@@ -1,5 +1,6 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 import { Request, Response, response } from 'express';
+import { validationResult } from 'express-validator';
 import auth from '../config/auth';
 
 const prisma = new PrismaClient();
@@ -7,6 +8,7 @@ const prisma = new PrismaClient();
 export default {
   async create(req: Request, res: Response) {
     try {
+      validationResult(req).throw();
       const token = auth.getToken(req);
       const payload = auth.decodeJWT(token);
       if (!payload) {
@@ -48,6 +50,7 @@ export default {
 
   async readProduct(req: Request, res: Response) {
     try {
+      validationResult(req).throw();
       const productId = Number(req.body.productId);
 
       const product = await prisma.product.findUnique({
@@ -84,6 +87,7 @@ export default {
 
   async update(req: Request, res: Response) {
     try {
+      validationResult(req).throw();
       const token = auth.getToken(req);
       const payload = auth.decodeJWT(token);
       if (!payload) {

@@ -1,12 +1,14 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
 import Auth from '../config/auth';
+import { validationResult } from 'express-validator';
 
 const prisma = new PrismaClient();
 
 class CommentController {
   async create(request: Request, response: Response) {
     try {
+      validationResult(request).throw();
       const token = Auth.getToken(request);
       const payload = Auth.decodeJWT(token);
       if (!payload) {
@@ -56,6 +58,7 @@ class CommentController {
   async readComments(req: Request, res: Response) {
     //le todos os comentario de um produto e suas respostas
     try {
+      validationResult(req).throw();
       const productId = Number(req.body.productId);
       const answers = await prisma.comment.findMany({
         where: { id: productId },
@@ -70,6 +73,7 @@ class CommentController {
 
   async destroy(request: Request, response: Response) {
     try {
+      validationResult(request).throw();
       const token = Auth.getToken(request);
       const payload = Auth.decodeJWT(token);
       if (!payload) {

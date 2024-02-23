@@ -1,6 +1,7 @@
 import { Prisma, PrismaClient } from "@prisma/client"
 import { Request, Response } from "express";
 import auth from '../config/auth';
+import { validationResult } from 'express-validator';
 
 
 const prisma = new PrismaClient();
@@ -10,6 +11,7 @@ export default  {
     async addProduct (req: Request, res: Response) 
     {
         try {
+            validationResult(req).throw();
             const token = auth.getToken(req);
             const payload = auth.decodeJWT(token);
             if (!payload) { return res.status(403).json({ message: "Não autorizado" }) }
@@ -66,6 +68,7 @@ export default  {
     {
         // reduzir a quantidade de um produto no carrinho
         try {
+            validationResult(req).throw();
             const token = auth.getToken(req);
             const payload = auth.decodeJWT(token);
             if (!payload) { return res.status(403).json({ message: "Não autorizado" }) }
@@ -111,6 +114,7 @@ export default  {
     {
         /// excluir um produto do carrinho
         try {
+            validationResult(req).throw();
             const token = auth.getToken(req);
             const payload = auth.decodeJWT(token);
             if (!payload) { return res.status(403).json({ message: "Não autorizado" }) }

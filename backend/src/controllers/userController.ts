@@ -1,5 +1,6 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
+import { validationResult } from 'express-validator';
 import Auth from '../config/auth';
 
 const prisma = new PrismaClient();
@@ -7,6 +8,7 @@ const prisma = new PrismaClient();
 class UserController {
   async create(request: Request, response: Response) {
     try {
+      validationResult(request).throw();
       const {
         cpf,
         email,
@@ -73,6 +75,7 @@ class UserController {
 
   async update(request: Request, response: Response) {
     try {
+      validationResult(request).throw();
       const token = Auth.getToken(request);
       const payload = Auth.decodeJWT(token);
       if (!payload) {
@@ -104,6 +107,7 @@ class UserController {
 
   async updatePassword(request: Request, response: Response) {
     try {
+      validationResult(request).throw();
       const token = Auth.getToken(request);
       const payload = Auth.decodeJWT(token);
       if (!payload) {

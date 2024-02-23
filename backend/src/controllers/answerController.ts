@@ -1,5 +1,6 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 import { Request, Response, response } from 'express';
+import { validationResult } from 'express-validator';
 import auth from '../config/auth';
 
 
@@ -10,6 +11,7 @@ export default  {
     async create (req: Request, res: Response) 
     {
         try {
+            validationResult(req).throw();
             const token = auth.getToken(req);
             const payload = auth.decodeJWT(token);
             if (!payload) { return res.status(403).json({ message: "Não autorizado" }) }
@@ -60,6 +62,7 @@ export default  {
     async destroy (req: Request, res: Response) 
     {
         try {
+            validationResult(req).throw();
             const token = auth.getToken(req);
             const payload = auth.decodeJWT(token);
             if (!payload) { return res.status(403).json({ message: "Não autorizado" }) }
