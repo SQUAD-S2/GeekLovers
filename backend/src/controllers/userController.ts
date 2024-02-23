@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import Auth from '../config/auth';
 import handlebars from 'handlebars';
 import path from 'path';
-import { readRenderHtml, transport } from '../config/mailer';
+import mail from '../config/mailer';
 
 const prisma = new PrismaClient();
 
@@ -39,42 +39,30 @@ class UserController {
         salt,
       };
 
+      const user = await prisma.user.create({ data: userInput });
+
       // enviar email de boas vindas para o usuário
-      const pathTemplate = path.resolve(__dirname, '..', '..', 'templates', 'messageTemplate.html');
-      readRenderHtml(
+      const pathTemplate = path.resolve(__dirname, '..', '..', 'templates');
+      mail.readRenderHtml(
         path.join(pathTemplate, 'messageTemplate.html'),
         (err: any, htmlTemplate: string) => {
           const template = handlebars.compile(htmlTemplate);
           const replacements = {
             name: request.body.name,
-            message: 'Seja Bem Vindo!!',
+            message:
+              'Seja Bem Vindo ao GeekLovers!! Estamos muito felizes por ter realizado o cadastro em nossa plataforma! Não deixe de conferir as ultimas novidades da loja.',
           };
-
-          // readRenderHtml(pathTemplate, (htmlTemplate: any) => {
-          //   //Pegando o template para mensagens de boas vindas
-          //   const template = handlebars.compile(htmlTemplate);
-          //   const replacements = {
-          //     name: request.body.name,
-          //     message: 'Seja Bem Vindo!!',
-          //   };
           const htmlToSend = template(replacements);
-
           const message = {
-            from: process.env.MAIL_SENDER,
             to: request.body.email,
             subject: 'Bem vindo',
             html: htmlToSend,
           };
-
-          // Ao enviar email, ocorre erro de credenciais
-          transport.sendMail(message, (error: any) => {
+          mail.transport.sendMail(message, (error: any) => {
             console.log(error);
-            throw error;
           });
         },
       );
-
-      const user = await prisma.user.create({ data: userInput });
       return response.status(201).json(user);
     } catch (error: any) {
       return response.status(500).json({ error: error.message });
