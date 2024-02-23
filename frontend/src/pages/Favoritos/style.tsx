@@ -2,7 +2,6 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
     flex: 1;
-    justify-content: flex-start;
     allign-items: flex-start;
 `
 
@@ -35,12 +34,13 @@ export const Image = styled.Image`
 `
 
 export const Container2 = styled.View`
+    margin-left: 8vw;
+    gap: 2rem;
     display: flex;
     flex-direction: row;
     align-content: flex-end;
-    background-color: #F4D831;
     width: 100vw;
-    height: 3rem;
+    flex-wrap: wrap;
 `
 
 export const Image1 = styled.Image`

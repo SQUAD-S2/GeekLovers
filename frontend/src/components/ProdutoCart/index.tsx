@@ -5,7 +5,7 @@ import { TouchableOpacity } from "react-native";
 
 interface Produto { title: string; preço: string; imagem: string; } 
 
-function ProdutoCard ({title, preço, imagem}:Produto) {
+function ProdutoCart ({title, preço, imagem}:Produto) {
     const navigation = useNavigation ();
     return (
     <div>
@@ -22,4 +22,4 @@ function ProdutoCard ({title, preço, imagem}:Produto) {
     );
 }
 
-export default ProdutoCard ;
+export default ProdutoCart ;
