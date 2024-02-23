@@ -8,7 +8,8 @@ const prisma = new PrismaClient();
 const storage = (model: 'user' | 'product') => multer.diskStorage ({
 
 	destination: function (req, file, cb) { 
-        cb(null, path.join(__dirname, "..", "..", "uploads")) 
+        let dest = path.join(__dirname, "..", "..", "uploads")
+        cb(null, dest) 
     },
 
     filename: async function (req, file, cb) 
@@ -19,13 +20,17 @@ const storage = (model: 'user' | 'product') => multer.diskStorage ({
 
         const userId = Number(payload.sub);
 
+        console.log(userId);
+
         let filename = '';
         if (model === 'user') 
         {
             const user = await prisma.user.findUnique({ where: { id: userId } });
             if (!user) { return cb(new Error("Usuário não encontrado"), '') }
 
-            filename = model + '-' + user.name + '-';
+            filename = model + '-' + user.id + '-';
+
+            console.log(filename);
         } 
         else if (model === 'product') 
         {
@@ -36,14 +41,17 @@ const storage = (model: 'user' | 'product') => multer.diskStorage ({
             filename = model + product.name;
         } else { return cb(new Error("Model não suportada"), '') }
         
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        const uniqueSuffix = Date.now() + Math.round(Math.random() * 1E9);
         const extension = path.extname(file.originalname);
         filename += uniqueSuffix + extension;
+
+        console.log(filename);
 
         try {
             if (model === 'user') 
             {
                 await prisma.user.update({ where: {id: userId}, data: {profilePicture: filename} });
+                 
             } 
             else if (model === 'product') 
             {
@@ -64,6 +72,7 @@ const uploadPicture = (model: 'user' | 'product') => multer({
 
     fileFilter: function (req, file, cb) 
     {
+        console.log("foi")
         const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
         if (!allowedTypes.includes(file.mimetype))
         {

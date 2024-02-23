@@ -8,6 +8,8 @@ import productsOnCartController from '../controllers/productsOnCartController';
 import favoriteController from '../controllers/favoriteController';
 import commentController from '../controllers/commentController';
 import answerController from '../controllers/answerController';
+import uploadPicture from '../middlewares/file' 
+
 
 const router = Router();
 
@@ -21,7 +23,9 @@ router.put('/user', userController.update);
 router.put('/update-password', userController.updatePassword);
 router.delete('/delete-user', userController.destroy);
 
-router.post('/product', productController.create);
+router.post('/upload-user-picture', uploadPicture('user').single('file'))
+
+router.post('/product', uploadPicture('product').single('productPhoto'), productController.create);  
 router.get('/products', productController.read);
 router.get('/product', productController.readProduct);
 router.get('/user-products', productController.readUser);
