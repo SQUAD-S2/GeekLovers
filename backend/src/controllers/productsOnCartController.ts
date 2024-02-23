@@ -60,7 +60,7 @@ export default  {
 
             return res.status(201).json({ message: "Item adicionado ao carrinho" });
         } catch (error: any) {
-            return res.status(500).json({ error: error.message });
+            return res.status(500).json({ error });
         }
     },
 
@@ -106,7 +106,7 @@ export default  {
             }
             return res.status(201).json({ message: "Item removido do carrinho" });
         } catch (error: any) {
-            return res.status(500).json({ error: error.message });
+            return res.status(500).json({ error });
         }
     },
     
@@ -144,7 +144,7 @@ export default  {
     
             return res.status(200).json({ message: 'Produto removido' });
         } catch (error: any) {
-            return res.status(500).json({ error: error.message });
+            return res.status(500).json({ error });
         }
     }
 

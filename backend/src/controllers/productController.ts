@@ -35,7 +35,7 @@ export default {
 
       return res.status(201).json(product);
     } catch (error: any) {
-      return res.status(500).json({ error: error.message });
+      return res.status(500).json({ error });
     }
   },
 
@@ -62,7 +62,7 @@ export default {
 
       return res.status(201).json(product);
     } catch (error: any) {
-      return res.status(500).json({ error: error.message });
+      return res.status(500).json({ error });
     }
   },
 
@@ -130,7 +130,7 @@ export default {
         return res.status(403).json({ message: 'Usuário não autorizado' });
       }
     } catch (error: any) {
-      return res.status(500).json({ error: error.message });
+      return res.status(500).json({ error });
     }
   },
 

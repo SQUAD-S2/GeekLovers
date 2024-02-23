@@ -16,7 +16,8 @@ function validatorUser(method: string) {
         body('name')
           .exists()
           .withMessage('O campo não pode ser nulo')
-          .isLength({ min: 1 }),
+          .isLength({ min: 1 })
+          .withMessage('Precisa ser como exemplo@exemplo'),
 
         body('email')
           .exists()
@@ -36,8 +37,6 @@ function validatorUser(method: string) {
 
         body('status')
           .optional()
-          .isLength({ min: 1 })
-          .withMessage('O status nao poder ser vazio')
           .isDecimal()
           .withMessage('O status do usuário deve ser um decimal'),
 
@@ -71,8 +70,7 @@ function validatorUser(method: string) {
           .withMessage('O telefone deve ser passado como String'),
 
         body('role')
-          .exists()
-          .withMessage('O campo não pode ser nulo')
+          .optional()
           .isLength({ min: 1 })
           .withMessage('O cargo nao poder ser vazio')
           .isString()
@@ -85,29 +83,25 @@ function validatorUser(method: string) {
       return [
 
         body('cpf')
-          .exists()
-          .withMessage('O campo não pode ser nulo')
+          .optional()
           .isLength({ min: 11, max: 11 })
           .withMessage('O cpf deve possuir 11 números')
           .isString()
           .withMessage('O cpf deve ser passado como String'),
 
         body('name')
-          .exists()
-          .withMessage('O campo não pode ser nulo')
+          .optional()
           .isLength({ min: 1 }),
 
         body('email')
-          .exists()
-          .withMessage('O campo não pode ser nulo')
+          .optional()
           .isLength({ min: 1 })
           .withMessage('O corpo de email deve ser preenchido')
           .isEmail()
           .withMessage('Precisa ser como exemplo@exemplo'),
 
         body('birthDate')
-          .exists()
-          .withMessage('O campo não pode ser nulo')
+          .optional()
           .isLength({ min: 1 })
           .withMessage('A data de nascimento nao poder ser vazio')
           .isString()
@@ -140,8 +134,7 @@ function validatorUser(method: string) {
           .withMessage('O telefone deve ser passado como String'),
 
         body('role')
-          .exists()
-          .withMessage('O campo não pode ser nulo')
+          .optional()
           .isLength({ min: 1 })
           .withMessage('O cargo nao poder ser vazio')
           .isString()
@@ -223,16 +216,14 @@ function validatorProduct(method: string) {
     case 'update': {
       return [
         body('name')
-          .exists()
-          .withMessage('O campo é obrigatório')
+          .optional()
           .isLength({ min: 1 })
           .withMessage('O campo nao pode ser vazio')
           .isString()
           .withMessage('O nome deve ser passado como String'),
 
         body('price')
-          .exists()
-          .withMessage('O campo é obrigatório')
+          .optional()
           .isDecimal()
           .withMessage('A preço deve ser passada como decimal'),
 
@@ -244,8 +235,7 @@ function validatorProduct(method: string) {
           .withMessage('A descrição deve ser passado como String'),
 
         body('quantity')
-          .exists()
-          .withMessage('O campo é obrigatório')
+          .optional()
           .isInt()
           .withMessage('A quantidade deve ser passada como um Inteiro'),
       ];

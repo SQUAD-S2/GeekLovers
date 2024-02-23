@@ -56,7 +56,7 @@ class FavoriteController {
 
       return response.status(201).json(updatedFavorites);
     } catch (error: any) {
-      return response.status(500).json({ error: error.message });
+      return response.status(500).json({ error });
     }
   }
 
@@ -89,7 +89,7 @@ class FavoriteController {
 
       return response.status(201).json(updatedFavorites);
     } catch (error: any) {
-      return response.status(500).json({ error: error.message });
+      return response.status(500).json({ error });
     }
   }
 

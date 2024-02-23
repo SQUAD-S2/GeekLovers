@@ -51,7 +51,7 @@ class CommentController {
       });
       return response.status(201).json(newComment);
     } catch (error: any) {
-      return response.status(500).json({ error: error.message });
+      return response.status(500).json({ error });
     }
   }
 
@@ -67,7 +67,7 @@ class CommentController {
 
       return res.status(201).json(answers);
     } catch (error: any) {
-      return res.status(500).json({ error: error.message });
+      return res.status(500).json({ error });
     }
   }
 
@@ -119,7 +119,7 @@ class CommentController {
       });
       return response.status(201).json(deletedComment);
     } catch (error: any) {
-      return response.status(500).json({ error: error.message });
+      return response.status(500).json({ error });
     }
   }
 }

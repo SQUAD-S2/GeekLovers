@@ -53,7 +53,7 @@ export default  {
 
             return res.status(201).json(newAnswer)
         } catch (error: any) {
-            return res.status(500).json({error: error.message})
+          return res.status(500).json({ error });
         }
     },
 
@@ -110,7 +110,7 @@ export default  {
     
             return res.status(200).json({ message: 'Resposta removida' });
         } catch (error: any) {
-            return res.status(500).json({ error: error.message });
+          return res.status(500).json({ error });
         }
     },
 

@@ -41,7 +41,7 @@ class UserController {
       const user = await prisma.user.create({ data: userInput });
       return response.status(201).json(user);
     } catch (error: any) {
-      return response.status(500).json({ error: error.message });
+      return response.status(500).json({ error });
     }
   }
 
@@ -101,7 +101,7 @@ class UserController {
 
       return response.status(201).json(user);
     } catch (error: any) {
-      return response.status(500).json({ error: error.message });
+      return response.status(500).json({ error });
     }
   }
 
@@ -142,7 +142,7 @@ class UserController {
         return response.status(401).json({ message: 'Senha Atual incorreta.' });
       }
     } catch (error: any) {
-      return response.status(500).json({ error: error.message });
+      return response.status(500).json({ error });
     }
   }
 

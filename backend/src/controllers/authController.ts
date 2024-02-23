@@ -23,7 +23,7 @@ class AuthController {
         return response.status(401).json({ message: 'Senha invalida' });
       }
     } catch (error) {
-      return response.status(500).json({ err: error });
+      return response.status(500).json({ error });
     }
   }
 
