@@ -16,9 +16,9 @@ async function main() {
   await prisma.user.deleteMany();
 
   // popular o banco de dados
-  // await userSeed();
-  // await productSeed();
-  // await productsOnCartSeed();
+  await userSeed();
+  await productSeed();
+  await productsOnCartSeed();
 }
 
 main()
