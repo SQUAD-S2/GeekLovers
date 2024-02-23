@@ -2,6 +2,9 @@ import { Prisma, PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import Auth from '../config/auth';
+import handlebars from 'handlebars';
+import path from 'path';
+import mail from '../config/mailer';
 
 const prisma = new PrismaClient();
 
@@ -39,6 +42,29 @@ class UserController {
       };
 
       const user = await prisma.user.create({ data: userInput });
+
+      // enviar email de boas vindas para o usuário
+      const pathTemplate = path.resolve(__dirname, '..', '..', 'templates');
+      mail.readRenderHtml(
+        path.join(pathTemplate, 'messageTemplate.html'),
+        (err: any, htmlTemplate: string) => {
+          const template = handlebars.compile(htmlTemplate);
+          const replacements = {
+            name: request.body.name,
+            message:
+              'Seja Bem Vindo ao GeekLovers!! Estamos muito felizes por ter realizado o cadastro em nossa plataforma! Não deixe de conferir as ultimas novidades da loja.',
+          };
+          const htmlToSend = template(replacements);
+          const message = {
+            to: request.body.email,
+            subject: 'Bem vindo',
+            html: htmlToSend,
+          };
+          mail.transport.sendMail(message, (error: any) => {
+            console.log(error);
+          });
+        },
+      );
       return response.status(201).json(user);
     } catch (error: any) {
       return response.status(500).json({ error });
